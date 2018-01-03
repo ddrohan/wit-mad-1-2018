@@ -148,16 +148,8 @@ body
       06
     </a>
     
-    <a class="item" data-tab="07">
-      07
-    </a>
-    
-    <a class="item" data-tab="08">
-      08
-    </a>
-    
-    <a class="item" data-tab="Exercises">
-      Exercises
+    <a class="item" data-tab="Solution">
+      Solution
     </a>
     
     <div class="item">
@@ -263,7 +255,7 @@ dependencies {
      
       <div  class="ui tab segment lab" data-tab="02">
         <h1>Model - Donation</h1>
-<p>The current Donation class needs some minor adjustments. Specifically, we need to include an _id field, as well as some other fields (see below):</p>
+<p>The current Donation class needs some minor adjustments. Specifically, we need to include some kind of an id field, as well as some other fields (see below):</p>
 <h2>Donation</h2>
 <pre><code>package ie.app.models;
 
@@ -293,6 +285,7 @@ public class Donation
         return _id + &quot;, &quot; + amount + &quot;, &quot; + paymenttype + &quot;, &quot; + upvotes + &quot;, &quot; + latitude + &quot;, &quot; + longitude;
     }
 }</code></pre>
+<p>Be aware that refactoring the Donation class will result in related errors in the project so be sure to fix these before moving onto the next step.</p>
 
       </div>
      
@@ -414,444 +407,188 @@ public class DonationApp extends Application
     }
 }</code></pre>
 <p>This version sets up a DonationService object - and makes this service object available for the activities. It also introduces a url we should use to access the remote service.</p>
-<p>Using the lecture material and your knowledge gained so far, refactor the above class to use the DonationService object to retrieve a list of all the donations from the server and update the donations list declared inside DonationApp.</p>
+<p>Using the lecture material and your knowledge gained so far, refactor the above class to use the DonationService object to retrieve a list of all the donations from the server and populate the donations list declared inside the DonationApp Application class.</p>
 
       </div>
      
       <div  class="ui tab segment lab" data-tab="05">
-        <h1>Welcome</h1>
-<p>This is a new version of the Welcome Activity class</p>
-<pre><code>package app.donation.activity;
+        <h1>Donate</h1>
+<p>This is a new version of the Donate Activity class - with some important omissions (marked below).</p>
+<p>Complete the necessary functionality before moving on.</p>
+<pre><code>package ie.app.activities;
 
-import app.donation.R;
-import app.donation.activity.Login;
-import app.donation.activity.Signup;
-import app.donation.main.DonationApp;
-import app.donation.model.Candidate;
-import app.donation.model.User;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.View;
+import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.NumberPicker;
+import android.widget.ProgressBar;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
+import ie.app.R;
+import ie.app.models.Donation;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class Welcome extends AppCompatActivity implements Callback&lt;List&lt;User&gt;&gt;
-{
-  private DonationApp app;
+public class Donate extends Base implements Callback&lt;Donation&gt; {
 
-  @Override
-  public void onCreate(Bundle savedInstanceState)
-  {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_welcome);
+    private Button              donateButton;
+    private RadioGroup          paymentMethod;
+    private ProgressBar         progressBar;
+    private NumberPicker        amountPicker;
+    private EditText            amountText;
+    private TextView            amountTotal;
+    private SharedPreferences   settings;
 
-    app = (DonationApp) getApplication();
-  }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_donate);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-  @Override
-  public void onResume()
-  {
-    super.onResume();
-    app.currentUser = null;
-    Call&lt;List&lt;User&gt;&gt; call1 = (Call&lt;List&lt;User&gt;&gt;) app.donationService.getAllUsers();
-    call1.enqueue(this);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, &quot;Replace with your own action&quot;, Snackbar.LENGTH_LONG)
+                        .setAction(&quot;Action&quot;, null).show();
+            }
+        });
 
-    Call&lt;List&lt;Candidate&gt;&gt; call2 = (Call&lt;List&lt;Candidate&gt;&gt;) app.donationService.getAllCandidates();
-    call2.enqueue(new Callback&lt;List&lt;Candidate&gt;&gt;() {
-      @Override
-      public void onResponse(Call&lt;List&lt;Candidate&gt;&gt; call, Response&lt;List&lt;Candidate&gt;&gt; response) {
-        app.candidates = response.body();
-      }
+        donateButton = (Button) findViewById(R.id.donateButton);
 
-      @Override
-      public void onFailure(Call&lt;List&lt;Candidate&gt;&gt; call, Throwable t) {
-        app.donationServiceAvailable = false;
-        serviceUnavailableMessage();
-      }
-    });
+        paymentMethod = (RadioGroup)   findViewById(R.id.paymentMethod);
+        progressBar   = (ProgressBar)  findViewById(R.id.progressBar);
+        amountPicker  = (NumberPicker) findViewById(R.id.amountPicker);
+        amountText    = (EditText)     findViewById(R.id.paymentAmount);
+        amountTotal   = (TextView)     findViewById(R.id.totalSoFar);
 
-  }
+        amountPicker.setMinValue(0);
+        amountPicker.setMaxValue(1000);
+        progressBar.setMax(10000);
+        amountTotal.setText(&quot;$&quot; + app.totalDonated);
 
-  @Override
-  public void onResponse(Call&lt;List&lt;User&gt;&gt; call, Response&lt;List&lt;User&gt;&gt; response)
-  {
-    serviceAvailableMessage();
-    app.users = response.body();
-    app.donationServiceAvailable = true;
-  }
+        settings = getSharedPreferences(&quot;loginPrefs&quot;, 0);
+        String username = settings.getString(&quot;username&quot;, &quot;&quot;);
 
-  @Override
-  public void onFailure(Call&lt;List&lt;User&gt;&gt; call, Throwable t)
-  {
-    app.donationServiceAvailable = false;
-    serviceUnavailableMessage();
-  }
+        TextView donateUsername = (TextView) findViewById(R.id.donateUsername);
 
-  public void loginPressed (View view)
-  {
-    if (app.donationServiceAvailable)
-    {
-      startActivity (new Intent(this, Login.class));
+        SpannableString spanString = new SpannableString(username);
+        //spanString.setSpan(new UnderlineSpan(), 0, spanString.length(), 0);
+        spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
+        spanString.setSpan(new StyleSpan(Typeface.ITALIC), 0, spanString.length(), 0);
+        donateUsername.setText(spanString);
+
+
     }
-    else
-    {
-      serviceUnavailableMessage();
-    }
-  }
 
-  public void signupPressed (View view)
-  {
-    if (app.donationServiceAvailable)
+    public void donateButtonPressed (View view)
     {
-      startActivity (new Intent(this, Signup.class));
+        String method = paymentMethod.getCheckedRadioButtonId() == R.id.PayPal ? &quot;PayPal&quot; : &quot;Direct&quot;;
+        int donatedAmount =  amountPicker.getValue();
+        if (donatedAmount == 0)
+        {
+            String text = amountText.getText().toString();
+            if (!text.equals(&quot;&quot;))
+                donatedAmount = Integer.parseInt(text);
+        }
+        if (donatedAmount &gt; 0)
+        {
+            Donation donation = new Donation(donatedAmount, method,0,0.0,0.0);
+
+              //////////////////////////////////////////////////
+              // Retrofit Call to Create a Donation goes here //
+              //////////////////////////////////////////////////
+        }
+
+        amountText.setText(&quot;&quot;);
+        amountPicker.setValue(0);
     }
-    else
+
+    @Override
+    public void reset(MenuItem item)
     {
-      serviceUnavailableMessage();
+        app.donations.clear();
+        app.totalDonated = 0;
+        amountTotal.setText(&quot;$&quot; + app.totalDonated);
     }
-  }
 
-  void serviceUnavailableMessage()
-  {
-    Toast toast = Toast.makeText(this, &quot;Donation Service Unavailable. Try again later&quot;, Toast.LENGTH_LONG);
-    toast.show();
-  }
+    @Override
+    public void onResponse(Call&lt;Donation&gt; call, Response&lt;Donation&gt; response)
+    {
+        Toast toast = Toast.makeText(this, &quot;Donation Accepted&quot;, Toast.LENGTH_SHORT);
+        toast.show();
+        getAllDonations();
+    }
 
-  void serviceAvailableMessage()
-  {
-    Toast toast = Toast.makeText(this, &quot;Donation Contacted Successfully&quot;, Toast.LENGTH_LONG);
-    toast.show();
-  }
+    @Override
+    public void onFailure(Call&lt;Donation&gt; call, Throwable t)
+    {
+        Toast toast = Toast.makeText(this, &quot;Error making donation&quot;, Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+    public void getAllDonations() {
+        Call&lt;List&lt;Donation&gt;&gt; call2 = (Call&lt;List&lt;Donation&gt;&gt;) app.donationService.getAllDonations();
+        call2.enqueue(new Callback&lt;List&lt;Donation&gt;&gt;() {
+            @Override
+            public void onResponse(Call&lt;List&lt;Donation&gt;&gt; call, Response&lt;List&lt;Donation&gt;&gt; response) {
+                Log.v(&quot;retrofit&quot;,&quot;JSON = &quot; + response.raw());
+
+                //////////////////////////////////////////////////////
+                // Update the donations list and related variables  //
+                // and widgets to ensure a consistent value for the //
+                // total amount donated and the progress bar value  //
+                //////////////////////////////////////////////////////
+
+                app.donationServiceAvailable = true;
+            }
+
+            @Override
+            public void onFailure(Call&lt;List&lt;Donation&gt;&gt; call, Throwable t) {
+                app.donationServiceAvailable = false;
+                Log.v(&quot;retrofit&quot;,t.getMessage());
+                app.serviceUnavailableMessage();
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getAllDonations();
+    }
 }</code></pre>
-<p>onResume is issuing a request to the API for the list of all donors...</p>
-<pre><code>    Call&lt;List&lt;Donor&gt;&gt; call1 = (Call&lt;List&lt;Donor&gt;&gt;) app.donationService.getAllDonors();
-    call1.enqueue(this);</code></pre>
-<p>the response to this request is delivered into one of these two methods:</p>
-<pre><code>  public void onResponse(Call&lt;List&lt;User&gt;&gt; call, Response&lt;List&lt;User&gt;&gt; response)
-  {
-    serviceAvailableMessage();
-    app.users = response.body();
-    app.donationServiceAvailable = true;
-  }
-
-  @Override
-  public void onFailure(Call&lt;List&lt;User&gt;&gt; call, Throwable t)
-  {
-    app.donationServiceAvailable = false;
-    serviceUnavailableMessage();
-  }</code></pre>
-<p>onResponse indicates success - so we store the donors in the app objects. onFailure sets a flag in app, and displays an error message.</p>
-<p>We are also doing something similar here:</p>
-<pre><code>    Call&lt;List&lt;Candidate&gt;&gt; call2 = (Call&lt;List&lt;Candidate&gt;&gt;) app.donationService.getAllCandidates();
-    call2.enqueue(new Callback&lt;List&lt;Candidate&gt;&gt;() {
-      @Override
-      public void onResponse(Call&lt;List&lt;Candidate&gt;&gt; call, Response&lt;List&lt;Candidate&gt;&gt; response) {
-        app.candidates = response.body();
-      }
-
-      @Override
-      public void onFailure(Call&lt;List&lt;Candidate&gt;&gt; call, Throwable t) {
-        app.donationServiceAvailable = false;
-        serviceUnavailableMessage();
-      }
-    });</code></pre>
-<p>This time we are requesting a list of candidates from the remote service, and storing them in the app object. We are using an anonymous inner class instead of the Welcome class as the implementor of the callback interface.</p>
-<p>Run the app now (make sure the donation-service is running). You should get the &#39;Donation Contacted Successfully&#39; messages. If not, we will need to discover why before proceeding to next steps...</p>
+<p>Run the app now (make sure the web service is awake and running). You should get the &#39;Donation Contacted Successfully&#39; and/or &#39;Donation Created Successfully&#39; messages. If not, we will need to discover why before proceeding to next steps...</p>
 
       </div>
      
       <div  class="ui tab segment lab" data-tab="06">
-        <h1>Signup Activity</h1>
-<p>We can rework the Signup Activity to create and send new user registrations to the remote service:</p>
-<pre><code>package app.donation.activity;
-
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import app.donation.R;
-import app.donation.main.DonationApp;
-import app.donation.model.User;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-
-public class Signup extends AppCompatActivity implements Callback&lt;User&gt;
-{
-  private DonationApp app;
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState)
-  {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_signup);
-    app = (DonationApp) getApplication();
-  }
-
-  public void signupPressed (View view)
-  {
-    TextView firstName = (TextView)  findViewById(R.id.firstName);
-    TextView lastName  = (TextView)  findViewById(R.id.lastName);
-    TextView email     = (TextView)  findViewById(R.id.Email);
-    TextView password  = (TextView)  findViewById(R.id.Password);
-
-    User user = new User(firstName.getText().toString(), lastName.getText().toString(), email.getText().toString(), password.getText().toString());
-
-    DonationApp app = (DonationApp) getApplication();
-    Call&lt;User&gt; call = (Call&lt;User&gt;) app.donationService.createUser(user);
-    call.enqueue(this);
-  }
-
-  @Override
-  public void onResponse(Call&lt;User&gt; call, Response&lt;User&gt; response)
-  {
-    app.users.add(response.body());
-    startActivity(new Intent(this, Welcome.class));
-  }
-
-  @Override
-  public void onFailure(Call&lt;User&gt; call, Throwable t)
-  {
-    app.donationServiceAvailable = false;
-    Toast toast = Toast.makeText(this, &quot;Donation Service Unavailable. Try again later&quot;, Toast.LENGTH_LONG);
-    toast.show();
-    startActivity (new Intent(this, Welcome.class));
-  }
-}</code></pre>
-<p>Run the app now - and sign up a new user. It should work successfully. The significant changes are here:</p>
-<ul>
-<li>We send a new User details to the service here:</li>
-</ul>
-<pre><code>    Call&lt;User&gt; call = (Call&lt;User&gt;) app.donationService.createUser(user);
-    call.enqueue(this);</code></pre>
-<ul>
-<li>we deal with the responses here:</li>
-</ul>
-<pre><code>  @Override
-  public void onResponse(Call&lt;User&gt; call, Response&lt;User&gt; response)
-  {
-    app.users.add(response.body());
-    startActivity(new Intent(this, Welcome.class));
-  }
-
-  @Override
-  public void onFailure(Call&lt;User&gt; call, Throwable t)
-  {
-    app.donationServiceAvailable = false;
-    Toast toast = Toast.makeText(this, &quot;Donation Service Unavailable. Try again later&quot;, Toast.LENGTH_LONG);
-    toast.show();
-    startActivity (new Intent(this, Welcome.class));
-  }</code></pre>
-<p>To verify that is has worked, check the api for the new donor:</p>
-<ul>
-<li><a href="http://localhost:4000/api/users">http://localhost:4000/api/users</a></li>
-</ul>
-<p>You should see the new user listed.</p>
-<p>If it is not working correctly at this stage - you will need to discover why before moving on to the next steps.</p>
-
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="07">
-        <h1>Donate Layout</h1>
-<p>We now need to adjust the Donate activity view to also allow the user to select the candidate:</p>
-<p><img src="img/06.png" alt=""></p>
-<p>The spinner should display the candidates:</p>
-<p><img src="img/07.png" alt=""></p>
-<p>This is the layout file for activity_donate which include a new spinner control:</p>
-<pre><code>&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-                xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-                android:layout_width=&quot;match_parent&quot;
-                android:layout_height=&quot;match_parent&quot;
-                android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
-                android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
-                android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
-                android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
-                tools:context=&quot;.activity.Donate&quot; &gt;
-
-  &lt;TextView
-      android:id=&quot;@+id/donateTitle&quot;
-      android:layout_width=&quot;wrap_content&quot;
-      android:layout_height=&quot;wrap_content&quot;
-      android:layout_alignParentLeft=&quot;true&quot;
-      android:layout_alignParentRight=&quot;true&quot;
-      android:layout_alignParentTop=&quot;true&quot;
-      android:text=&quot;@string/donateTitle&quot;
-      android:textAppearance=&quot;?android:attr/textAppearanceLarge&quot; /&gt;
-
-  &lt;TextView
-      android:id=&quot;@+id/donateSubtitle&quot;
-      android:layout_width=&quot;wrap_content&quot;
-      android:layout_height=&quot;wrap_content&quot;
-      android:layout_alignParentLeft=&quot;true&quot;
-      android:layout_alignParentRight=&quot;true&quot;
-      android:layout_below=&quot;@+id/donateTitle&quot;
-      android:text=&quot;@string/donateSubtitle&quot;
-      android:textAppearance=&quot;?android:attr/textAppearanceMedium&quot; /&gt;
-
-  &lt;RadioGroup
-      android:id=&quot;@+id/paymentMethod&quot;
-      android:layout_width=&quot;wrap_content&quot;
-      android:layout_height=&quot;wrap_content&quot;
-      android:layout_above=&quot;@+id/progressBar&quot;
-      android:layout_alignLeft=&quot;@+id/donateSubtitle&quot;
-      android:layout_below=&quot;@+id/donateSubtitle&quot;
-      android:layout_marginLeft=&quot;14dp&quot;
-      android:layout_marginTop=&quot;26dp&quot;
-      android:layout_toLeftOf=&quot;@+id/amountPicker&quot; &gt;
-
-    &lt;RadioButton
-        android:id=&quot;@+id/PayPal&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:checked=&quot;true&quot;
-        android:text=&quot;@string/PayPal&quot; /&gt;
-
-    &lt;RadioButton
-        android:id=&quot;@+id/Direct&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;@string/Direct&quot; /&gt;
-
-  &lt;/RadioGroup&gt;
-
-  &lt;ProgressBar
-      android:id=&quot;@+id/progressBar&quot;
-      style=&quot;?android:attr/progressBarStyleHorizontal&quot;
-      android:layout_width=&quot;wrap_content&quot;
-      android:layout_height=&quot;wrap_content&quot;
-      android:layout_above=&quot;@+id/donateButton&quot;
-      android:layout_alignParentLeft=&quot;true&quot;
-      android:layout_alignParentRight=&quot;true&quot;
-      android:layout_marginBottom=&quot;67dp&quot; /&gt;
-
-  &lt;NumberPicker
-      android:id=&quot;@+id/amountPicker&quot;
-      android:layout_width=&quot;wrap_content&quot;
-      android:layout_height=&quot;wrap_content&quot;
-      android:layout_alignRight=&quot;@+id/donateSubtitle&quot;
-      android:layout_alignTop=&quot;@+id/paymentMethod&quot; /&gt;
-
-  &lt;EditText
-      android:id=&quot;@+id/amountText&quot;
-      android:layout_width=&quot;wrap_content&quot;
-      android:layout_height=&quot;wrap_content&quot;
-      android:layout_above=&quot;@+id/donateButton&quot;
-      android:layout_alignParentRight=&quot;true&quot;
-      android:layout_marginBottom=&quot;20dp&quot;
-      android:ems=&quot;10&quot;
-      android:inputType=&quot;number&quot; &gt;
-    &lt;requestFocus /&gt;
-  &lt;/EditText&gt;
-
-  &lt;TextView
-      android:id=&quot;@+id/amountLabel&quot;
-      android:layout_width=&quot;wrap_content&quot;
-      android:layout_height=&quot;wrap_content&quot;
-      android:layout_alignBottom=&quot;@+id/amountText&quot;
-      android:layout_alignLeft=&quot;@+id/paymentMethod&quot;
-      android:labelFor=&quot;@id/amountText&quot;
-      android:text=&quot;@string/amount&quot;
-      android:textAppearance=&quot;?android:attr/textAppearanceMedium&quot; /&gt;
-
-  &lt;Button
-      android:id=&quot;@+id/donateButton&quot;
-      android:layout_width=&quot;wrap_content&quot;
-      android:layout_height=&quot;wrap_content&quot;
-      android:layout_alignParentBottom=&quot;true&quot;
-      android:layout_alignParentLeft=&quot;true&quot;
-      android:layout_marginBottom=&quot;15dp&quot;
-      android:onClick=&quot;donateButtonPressed&quot;
-      android:text=&quot;@string/donateButton&quot; /&gt;
-
-  &lt;TextView
-      android:id=&quot;@+id/amountTotal&quot;
-      android:layout_width=&quot;wrap_content&quot;
-      android:layout_height=&quot;wrap_content&quot;
-      android:layout_alignBottom=&quot;@+id/donateButton&quot;
-      android:layout_alignRight=&quot;@+id/amountText&quot;
-      android:text=&quot;@string/initialAmount&quot;
-      android:textAppearance=&quot;?android:attr/textAppearanceMedium&quot; /&gt;
-
-  &lt;TextView
-      android:id=&quot;@+id/totalLabel&quot;
-      android:layout_width=&quot;wrap_content&quot;
-      android:layout_height=&quot;wrap_content&quot;
-      android:layout_alignBaseline=&quot;@+id/amountTotal&quot;
-      android:layout_alignBottom=&quot;@+id/amountTotal&quot;
-      android:layout_toLeftOf=&quot;@+id/amountPicker&quot;
-      android:text=&quot;@string/amountSoFarLabel&quot;
-      android:textAppearance=&quot;?android:attr/textAppearanceMedium&quot; /&gt;
-
-  &lt;Spinner
-      android:layout_width=&quot;match_parent&quot;
-      android:layout_height=&quot;wrap_content&quot;
-      android:layout_alignBottom=&quot;@+id/progressBar&quot;
-      android:layout_centerHorizontal=&quot;true&quot;
-      android:id=&quot;@+id/spinner&quot;/&gt;
-
-&lt;/RelativeLayout&gt;</code></pre>
-
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="08">
-        <h1>Donate</h1>
-<p>We will take Donate step by step this time to gain a better understanding of how the service is accessed.</p>
-<p>First, in Donate Activity, bring in these imports:</p>
+        <h1>Report</h1>
+<p>We will take Report step by step this time to gain a better understanding of how the service is accessed.</p>
+<p>First, in Report Activity, bring in these imports:</p>
 <pre><code>import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;</code></pre>
-<p>We need a new Adapter to handle the spinner we have just introduced to present the candidates list:</p>
-<pre><code>  private class CandidateAdapter extends BaseAdapter implements SpinnerAdapter {
-    private final List&lt;Candidate&gt; data;
-
-    public CandidateAdapter(List&lt;Candidate&gt; data) {
-      this.data = data;
-    }
-
-    @Override
-    public int getCount() {
-      return data.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-      return data.get(position);
-    }
-
-    @Override
-    public long getItemId(int i) {
-      return i;
-    }
-
-    @Override
-    public View getView(int position, View recycle, ViewGroup parent) {
-      TextView text;
-      if (recycle != null) {
-        text = (TextView) recycle;
-      } else {
-        text = (TextView) getLayoutInflater().inflate(
-            android.R.layout.simple_dropdown_item_1line, parent, false
-        );
-      }
-      text.setTextColor(Color.BLACK);
-      text.setText(data.get(position).firstName);
-      return text;
-    }
-  }</code></pre>
-<p>Npw implement the following interface in the class:</p>
-<pre><code>public class Donate extends AppCompatActivity implements Callback&lt;Donation&gt;</code></pre>
+import retrofit2.Response;</code></pre>
+<p>Now implement the following interface in the class:</p>
+<pre><code>public class Report extends Base implements OnItemClickListener,
+                                            OnClickListener,
+                                            Callback&lt;List&lt;Donation&gt;&gt; {</code></pre>
 <p>This will cause an error - and android studio may be able to suggest fixes via the following menu:</p>
 <p><img src="img/01x.png" alt=""></p>
 <p>Which will generate these methods:</p>
@@ -1089,13 +826,13 @@ public class Donate extends AppCompatActivity implements Callback&lt;Donation&gt
 
       </div>
      
-      <div  class="ui tab segment lab" data-tab="Exercises">
+      <div  class="ui tab segment lab" data-tab="Solution">
         <h1>Exercises</h1>
 <p>Archive of project so far:</p>
 <ul>
 <li><a href="https://bitbucket.org/edeleastar/donation-android-2016/commits/tag/lab.15.end">https://bitbucket.org/edeleastar/donation-android-2016/commits/tag/lab.15.end</a></li>
 </ul>
-<h2>Exercise 1: Heroku</h2>
+<h2>Exercise 1: Total Donated</h2>
 <p>Test the android application against the the heroku deployed service.</p>
 <p>You will need to insert the appropriate url into the DonationApp:</p>
 <pre><code>  public String               service_url  = &quot;http://10.0.2.2:9000&quot;;   // Standard Emulator IP Address</code></pre>
@@ -1106,7 +843,7 @@ public class Donate extends AppCompatActivity implements Callback&lt;Donation&gt
   DonationAdapter adapter = new DonationAdapter(this, app.donations);
   listView.setAdapter(adapter);
 ...</code></pre>
-<p>Change the way this works, such that we display all of the latest donations by requesting them directly form the donation-web service.</p>
+<p>Change the way this works, such that we display all of the latest donations by requesting them directly from the donation-web service.</p>
 
       </div>
      
