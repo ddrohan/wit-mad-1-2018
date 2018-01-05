@@ -1,0 +1,760 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+     
+
+     <style>
+       
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.ui.segment.pushable
+{
+  margin: 0;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+
+
+     </style>
+
+   </head>
+
+  <body>
+    
+
+<style>
+  
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom:thin solid black;
+}
+
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+body
+{
+  overflow-y: scroll;
+}
+
+.pushable > .pusher
+{
+  padding-bottom: 1.5rem;
+}
+
+.ui.segment.pushable
+{
+  margin: 0;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+
+
+</style>
+
+<div class="ui fixed top pointing inverted stackable menu labmenu">
+  <header class="header item">
+    <i id="toc" class="sitemap icon"></i>
+    <a href="../index.html">
+      03: Data Models, App Structure & Design
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    
+    <a class="item" data-tab="Lab-04">
+      Lab-04
+    </a>
+    
+    <a class="item" data-tab="01">
+      01
+    </a>
+    
+    <a class="item" data-tab="02">
+      02
+    </a>
+    
+    <a class="item" data-tab="03">
+      03
+    </a>
+    
+    <a class="item" data-tab="04">
+      04
+    </a>
+    
+    <a class="item" data-tab="05">
+      05
+    </a>
+    
+    <a class="item" data-tab="Exercise">
+      Exercise
+    </a>
+    
+    <div class="item">
+      
+    </div>
+  </div>
+</div>
+
+<div class="ui segment pushable">
+  <div class="ui inverted labeled icon left inline vertical sidebar menu">
+    <br><br>
+    
+      
+        <a class="item" href="../../topic01-overview-and-tools/book-a-lab-01/index.html">
+          Lab-01
+        </a>
+      
+    
+      
+        <a class="item" href="../../topic01-overview-and-tools/book-b-lab-02/index.html">
+          Lab-02
+        </a>
+      
+    
+      
+        <a class="item" href="../../topic02-activities-and-navigation/book-a-donation-02/index.html">
+          Lab-03
+        </a>
+      
+    
+      
+        <a class="active item" href="../../topic03-app-structure/book-a-donation-03/index.html">
+          Lab-04
+        </a>
+      
+    
+      
+        <a class="item" href="../../topic04-persistence/book-a-donation-04/index.html">
+          Lab-05
+        </a>
+      
+    
+      
+        <a class="item" href="../../topic05-retrofit/book-android-client/index.html">
+          Lab-Android-Retrofit
+        </a>
+      
+    
+  </div>
+  <div class="pusher" tabindex="-1">
+    <div class="ui basic segment" id="labchat">
+      <br>
+      
+      <div  class="ui tab segment lab" data-tab="Lab-04">
+        <h1>Objectives</h1>
+<p>In this version of our Donation Case Study App, called <b>Donation.3.0</b> we evolve the Donation Android app to include a Donation Object Model and Base class. We also use a CustomAdapter in the Report View and refactor our menus with xml driven event handling.</p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="01">
+        <h1>Donation Model &amp; Base Class</h1>
+<p>In order to keep our application design coherent, we now bring in a <strong>Base</strong> class and a <strong>Donation</strong> class to manage our Donations. You can continue with your own version of the app or start with the solution from the previous lab - <a href="archives/Donation.2.0.zip">Donation.2.0</a></p>
+<p>But before you do anything, it&#39;s probably a good idea to rename/copy your project to <b>Donation.3.0</b> like you did in the previous lab - so go ahead and do that now (just make sure it&#39;s not open in Android Studio before you go renaming files!, and don&#39;t forget to update your <strong>app_name</strong> resource in your <strong>strings.xml</strong>)</p>
+<p>Now, first, create a new package called <strong>ie.app.models</strong> in &#39;main&#39; and bring in this class here:</p>
+<pre><code class="lang-java">package ie.app.models;
+
+public class Donation
+{
+  public int    amount;
+  public String method;
+
+  public Donation (int amount, String method)
+  {
+    this.amount = amount;
+    this.method = method;
+  }
+}</code></pre>
+<p>Next, Create a new class called &#39;Base&#39; and add it to the <strong>ie.app.activities</strong> package: (and fix the errors :-) )</p>
+<pre><code class="lang-java">public class Base extends AppCompatActivity
+{
+  public final  int            target       = 10000;
+  public        int            totalDonated = 0;
+  public static List&lt;Donation&gt; donations    = new ArrayList&lt;Donation&gt;();
+
+  public boolean newDonation(Donation donation)
+  {
+    boolean targetAchieved = totalDonated &gt; target;
+    if (!targetAchieved)
+    {
+      donations.add(donation);
+      totalDonated += donation.amount;
+    }
+    else {
+      Toast.makeText(this, &quot;Target Exceeded!&quot;, Toast.LENGTH_SHORT).show();
+    }
+    return targetAchieved;
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu)
+  {
+    getMenuInflater().inflate(R.menu.donate, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onPrepareOptionsMenu (Menu menu){
+      super.onPrepareOptionsMenu(menu);
+      MenuItem report = menu.findItem(R.id.menuReport);
+      MenuItem donate = menu.findItem(R.id.menuDonate);
+
+      if(donations.isEmpty())     
+           report.setEnabled(false);
+      else
+        report.setEnabled(true);
+
+      if(this instanceof Donate){
+          donate.setVisible(false);
+          if(!donations.isEmpty())     
+                report.setVisible(true);
+        }
+      else {
+        report.setVisible(false);
+        donate.setVisible(true);
+        }
+
+      return true;  
+  }
+
+  public void settings(MenuItem item)
+  {
+    Toast.makeText(this, &quot;Settings Selected&quot;, Toast.LENGTH_SHORT).show();
+  }
+
+  public void report(MenuItem item)
+  {
+    startActivity (new Intent(this, Report.class));
+  }
+
+  public void donate(MenuItem item)
+  {
+    startActivity (new Intent(this, Donate.class));
+  }
+}</code></pre>
+<p>Notice our List of Donations in the <strong>Base</strong> class - we will use this list to display our Donations in the <strong>Report</strong> class.</p>
+<p>There is still one error remaining, can you work out why, and more importantly, how to fix it?</p>
+<p>Hint - it relates to class inheritance, and some refactoring that needs to be done.</p>
+<p>Your project should now look as follows:</p>
+<p><img src="img/lab4s101.png" alt=""></p>
+<p>Also, pay particular attention to the &#39;settings&#39;, &#39;report&#39; and &#39;donate&#39; methods - these will be triggered directly by our menu options via xml, which we&#39;ll look at in Step 05.</p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="02">
+        <h1>Refactored Donate</h1>
+<p>The <strong>Donate</strong> activity can now be completely refactored to make use of the <strong>Base</strong> class.</p>
+<pre><code class="lang-java">public class Donate extends Base {
+
+    private Button          donateButton;
+    private RadioGroup      paymentMethod;
+    private ProgressBar     progressBar;
+    private NumberPicker    amountPicker;
+    private EditText        amountText;
+    private TextView        amountTotal;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_donate);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, &quot;Replace with your own action&quot;, Snackbar.LENGTH_LONG)
+                        .setAction(&quot;Action&quot;, null).show();
+            }
+        });
+
+        donateButton = (Button) findViewById(R.id.donateButton);
+
+        paymentMethod = (RadioGroup)   findViewById(R.id.paymentMethod);
+        progressBar   = (ProgressBar)  findViewById(R.id.progressBar);
+        amountPicker  = (NumberPicker) findViewById(R.id.amountPicker);
+        amountText    = (EditText)     findViewById(R.id.paymentAmount);
+        amountTotal   = (TextView)     findViewById(R.id.totalSoFar);
+
+        amountPicker.setMinValue(0);
+        amountPicker.setMaxValue(1000);
+        progressBar.setMax(10000);
+        amountTotal.setText(&quot;$0&quot;);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_donate, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.menuReport : startActivity (new Intent(this, Report.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void donateButtonPressed (View view)
+    {
+        String method = paymentMethod.getCheckedRadioButtonId() == R.id.PayPal ? &quot;PayPal&quot; : &quot;Direct&quot;;
+        int donatedAmount =  amountPicker.getValue();
+        if (donatedAmount == 0)
+        {
+            String text = amountText.getText().toString();
+            if (!text.equals(&quot;&quot;))
+                donatedAmount = Integer.parseInt(text);
+        }
+        if (donatedAmount &gt; 0)
+        {
+            newDonation(new Donation(donatedAmount, method));
+            progressBar.setProgress(totalDonated);
+            String totalDonatedStr = &quot;$&quot; + totalDonated;
+            amountTotal.setText(totalDonatedStr);
+        }
+    }
+}</code></pre>
+<p>Replace your version with this and execute it - fix any missing import statements necessary.</p>
+<p>Look carefully at the changes to this version over the previous attempt.</p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="03">
+        <h1>Refactored Report - New &#39;Layout&#39;</h1>
+<p>We now rework the <strong>Report</strong> Layout to render the actual donations - held in the <strong>Base</strong> class list.</p>
+<p>First some layout additions. Include these new string resources in <strong>strings.xml</strong></p>
+<pre><code class="lang-xml">    &lt;string name=&quot;defaultAmount&quot;&gt;00&lt;/string&gt;
+    &lt;string name=&quot;defaultMethod&quot;&gt;N/A&lt;/string&gt;</code></pre>
+<p>This is a new layout - to be called &#39;<strong>row_donate.xml</strong>&#39;. Place this in the &#39;layout&#39; folder.</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:orientation=&quot;vertical&quot; android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/row_amount&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignParentLeft=&quot;true&quot;
+        android:layout_alignParentTop=&quot;true&quot;
+        android:layout_marginLeft=&quot;48dp&quot;
+        android:layout_marginTop=&quot;20dp&quot;
+        android:text=&quot;@string/defaultAmount&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/row_method&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_marginLeft=&quot;106dp&quot;
+        android:text=&quot;@string/defaultMethod&quot;
+        android:layout_alignTop=&quot;@+id/row_amount&quot;
+        android:layout_centerHorizontal=&quot;true&quot; /&gt;
+
+&lt;/RelativeLayout&gt;</code></pre>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="04">
+        <h1>Refactored Report - New &#39;Class&#39;</h1>
+<p>Finally, rework the <strong>Report</strong> class to remove the hard coded values - and use a different &#39;<strong>adapter</strong>&#39;</p>
+<pre><code class="lang-java">public class Report extends Base
+{
+    ListView listView;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_report);
+
+        listView = (ListView) findViewById(R.id.reportList);
+        DonationAdapter adapter = new DonationAdapter(this,  donations);
+        listView.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_donate, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.menuDonate : startActivity (new Intent(this, Donate.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}</code></pre>
+<p>This is the new adapter - <strong>DonationAdapter</strong>. You can place this at the end of the <strong>Report</strong> class (outside of the closing brace) if you like:</p>
+<pre><code class="lang-java">class DonationAdapter extends ArrayAdapter&lt;Donation&gt;
+{
+  private Context        context;
+  public  List&lt;Donation&gt; donations;
+
+  public DonationAdapter(Context context, List&lt;Donation&gt; donations)
+  {
+    super(context, R.layout.row_donate, donations);
+    this.context   = context;
+    this.donations = donations;
+  }
+
+  @Override
+  public View getView(int position, View convertView, ViewGroup parent)
+  {
+    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+    View     view       = inflater.inflate(R.layout.row_donate, parent, false);
+    Donation donation   = donations.get(position);
+    TextView amountView = (TextView) view.findViewById(R.id.row_amount);
+    TextView methodView = (TextView) view.findViewById(R.id.row_method);
+
+    amountView.setText(&quot;$&quot; + donation.amount);
+    methodView.setText(donation.method);
+
+    return view;
+  }
+
+  @Override
+  public int getCount()
+  {
+    return donations.size();
+  }
+}</code></pre>
+<p>If all goes well - then you should be able to make donations, and then see a list of them in the <strong>Report</strong> activity.</p>
+<p><img src="img/lab4s401.png" alt=""> <img src="img/lab4s402.png" alt=""></p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="05">
+        <h1>Refactored Menu - New &#39;Event Handling&#39;</h1>
+<p>If you recall from Step 01, our <strong>Base</strong> class has 3 particular methods that we haven&#39;t made use of - yet</p>
+<pre><code class="lang-java">  public void settings(MenuItem item)
+  {
+    Toast.makeText(this, &quot;Settings Selected&quot;, Toast.LENGTH_SHORT).show();
+  }
+
+  public void report(MenuItem item)
+  {
+    startActivity (new Intent(this, Report.class));
+  }
+
+  public void donate(MenuItem item)
+  {
+    startActivity (new Intent(this, Donate.class));
+  }
+}</code></pre>
+<p>We now use these methods, and using the <b>onClick</b> attribute in our <em>MenuItems</em>, we will &#39;bind&#39; these methods to our menu options.</p>
+<p>Firstly, edit your <strong>menu_donate.xml</strong> and ensure it now looks as follows:</p>
+<pre><code class="lang-xml">&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot; tools:context=&quot;.Donate&quot;&gt;
+
+    &lt;item android:id=&quot;@+id/action_settings&quot;
+        android:title=&quot;@string/action_settings&quot;
+        android:orderInCategory=&quot;100&quot;
+        app:showAsAction=&quot;never&quot;
+        android:onClick=&quot;settings&quot;/&gt;
+
+    &lt;item
+        android:id=&quot;@+id/menuReport&quot;
+        android:orderInCategory=&quot;100&quot;
+        android:title=&quot;@string/menuReport&quot;
+        app:showAsAction=&quot;never&quot;
+        android:onClick=&quot;report&quot;/&gt;
+
+    &lt;item
+        android:id=&quot;@+id/menuDonate&quot;
+        android:orderInCategory=&quot;100&quot;
+        android:title=&quot;@string/menuDonate&quot;
+        app:showAsAction=&quot;never&quot;
+        android:onClick=&quot;donate&quot;/&gt;
+&lt;/menu&gt;</code></pre>
+<p>NOTE the added <strong>onClick</strong> attributes for each <em>MenuItem</em>, it directly corresponds to the method names in our <strong>Base</strong> class.</p>
+<p>We can now refactor our <strong>Donate</strong> &amp; <strong>Report</strong> classes and <strong><em>Remove</em></strong> the menu inflation and event handling code in both classes.</p>
+<p>So, both classes should look as follows:</p>
+<p><b>Donate</b></p>
+<pre><code class="lang-java">public class Donate extends Base {
+
+    private Button          donateButton;
+    private RadioGroup      paymentMethod;
+    private ProgressBar     progressBar;
+    private NumberPicker    amountPicker;
+    private EditText        amountText;
+    private TextView        amountTotal;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_donate);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, &quot;Replace with your own action&quot;, Snackbar.LENGTH_LONG)
+                        .setAction(&quot;Action&quot;, null).show();
+            }
+        });
+
+        donateButton = (Button) findViewById(R.id.donateButton);
+
+        paymentMethod = (RadioGroup)   findViewById(R.id.paymentMethod);
+        progressBar   = (ProgressBar)  findViewById(R.id.progressBar);
+        amountPicker  = (NumberPicker) findViewById(R.id.amountPicker);
+        amountText    = (EditText)     findViewById(R.id.paymentAmount);
+        amountTotal   = (TextView)     findViewById(R.id.totalSoFar);
+
+        amountPicker.setMinValue(0);
+        amountPicker.setMaxValue(1000);
+        progressBar.setMax(10000);
+        amountTotal.setText(&quot;$0&quot;);
+    }
+
+    public void donateButtonPressed (View view)
+    {
+        String method = paymentMethod.getCheckedRadioButtonId() == R.id.PayPal ? &quot;PayPal&quot; : &quot;Direct&quot;;
+        int donatedAmount =  amountPicker.getValue();
+        if (donatedAmount == 0)
+        {
+            String text = amountText.getText().toString();
+            if (!text.equals(&quot;&quot;))
+                donatedAmount = Integer.parseInt(text);
+        }
+        if (donatedAmount &gt; 0)
+        {
+            newDonation(new Donation(donatedAmount, method));
+            progressBar.setProgress(totalDonated);
+            String totalDonatedStr = &quot;$&quot; + totalDonated;
+            amountTotal.setText(totalDonatedStr);
+        }
+    }
+}</code></pre>
+<p><b>Report</b></p>
+<pre><code class="lang-java">public class Report extends Base
+{
+    ListView listView;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_report);
+
+        listView = (ListView) findViewById(R.id.reportList);
+        DonationAdapter adapter = new DonationAdapter(this,  donations);
+        listView.setAdapter(adapter);
+    }
+}
+
+class DonationAdapter extends ArrayAdapter&lt;Donation&gt;
+{
+    private Context context;
+    public List&lt;Donation&gt; donations;
+
+    public DonationAdapter(Context context, List&lt;Donation&gt; donations)
+    {
+        super(context, R.layout.row_donate, donations);
+        this.context   = context;
+        this.donations = donations;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View     view       = inflater.inflate(R.layout.row_donate, parent, false);
+        Donation donation   = donations.get(position);
+        TextView amountView = (TextView) view.findViewById(R.id.row_amount);
+        TextView methodView = (TextView) view.findViewById(R.id.row_method);
+
+        amountView.setText(&quot;$&quot; + donation.amount);
+        methodView.setText(donation.method);
+
+        return view;
+    }
+
+    @Override
+    public int getCount()
+    {
+        return donations.size();
+    }
+}</code></pre>
+<p>Run your app once more, to confirm the changes, and that your <strong>Menu</strong> still works as it should.</p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="Exercise">
+        <h1>Exercise &amp; Solution</h1>
+<p>As a final exercise, try and add some event handling to the <strong>Report</strong> Activity - i.e. when the user selects a row in the Report List, display a simple toast detailing which row was selected and the donation data from that row.</p>
+<p>Something like this:</p>
+<p><img src="img/lab4s701.png" alt=""></p>
+<p>You may find the following useful if you need to refactor your Donation model</p>
+<p><img src="img/lab4s702.png" alt=""></p>
+<p>and</p>
+<p><img src="img/lab4s703.png" alt=""></p>
+<p>and adding some &#39;Event Handling&#39; to the List.</p>
+<p><img src="img/lab4s704.png" alt=""></p>
+<p>and</p>
+<p><img src="img/lab4s705.png" alt=""></p>
+<p>and</p>
+<p><img src="img/lab4s706.png" alt=""></p>
+<p>Project Solution:</p>
+<ul>
+<li><a href="archives/Donation.3.0.zip">Donation.3.0</a></li>
+</ul>
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+<!--<div class="ui bottom fixed borderless right menu">
+  <div class="ui right tiny menu">
+    <div class="ui mini message segment">
+      .
+      <a href="http://creativecommons.org/licenses/by-nc/4.0/"
+         title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+         target="_blank">Creative Commons License
+      </a>
+    </div>
+  </div>
+</div>-->
+
+<script>
+  $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+</script>
+
+
+
+    <footer>
+
+    </footer>
+    <script>
+      $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+    </script>
+  </body>
+
+ </html>
