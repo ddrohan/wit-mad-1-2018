@@ -211,6 +211,10 @@ body
 <p><img src="img/new04.png" alt="Figure 5: Change default settings to HelloWorldActivity in Customize the Activity screen"></p>
 <p>After you press &quot;Finish&quot;, you should now have something similar to the following:</p>
 <p><img src="img/new05.png" alt="Figure 6: Project open in Layout View"></p>
+<p>NOTE : if your project fails to build correctly, you may have a Gradle error like below</p>
+<p><img src="img/error1.png" alt="Figure 6.1: Gradle Build Error in Project"></p>
+<p>To fix this, you need to open your <b>Module</b> (NOT Project) build.gradle file and change the build version from 26.1.0 to 26.0.2, as below</p>
+<p><img src="img/error1.png" alt="Figure 6.2: FIX for Gradle Build Error in Project"></p>
 <p>Next, as an exercise, select File-&gt;Close Project, to close the project so we can import it again.</p>
 <p>If no other Projects are open you will be displayed with</p>
 <p><img src="img/new06.png" alt="Figure 7: Open Existing Project"></p>
@@ -247,7 +251,7 @@ body
 <pre><code>    &lt;string name=&quot;window_text&quot;&gt;Press the button below to receive a friendly greeting from Android.&lt;/string&gt;
     &lt;string name=&quot;button_label&quot;&gt;Show Greeting&lt;/string&gt;
     &lt;string name=&quot;greeting_text&quot;&gt;Hello from Android!&lt;/string&gt;</code></pre>
-<p>Your completed strings.xml (with menu resurces) should look like this</p>
+<p>Your completed strings.xml (with menu resources) should look like this</p>
 <pre><code>&lt;resources&gt;
     &lt;string name=&quot;app_name&quot;&gt;HelloWorld&lt;/string&gt;
     &lt;string name=&quot;action_settings&quot;&gt;Settings&lt;/string&gt;
