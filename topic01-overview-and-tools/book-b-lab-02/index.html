@@ -128,6 +128,10 @@ body
       01
     </a>
     
+    <a class="item" data-tab="02-Dave's MBP">
+      02-Dave's MBP
+    </a>
+    
     <a class="item" data-tab="02">
       02
     </a>
@@ -224,6 +228,151 @@ body
 <p>Also, take a quick look at your <b>build.gradle</b> file to see the configuration and dependencies of your app.</p>
 <p>NOTE : The version Numbers may differ depending on the API level you chose initially.</p>
 <p><img src="img/lab2s110.png" alt=""></p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="02-Dave's MBP">
+        <h1>Step 02 - Donate Layout &amp; Resources</h1>
+<p>On completion of this lab you&#39;ll be able to</p>
+<ul>
+<li><p>design an initial layout for the app.</p>
+</li>
+<li><p>add different widgets (such as a button, text and picker) to a layout.</p>
+</li>
+<li><p>implement basic event handling to cause some action on the click of a button.</p>
+</li>
+<li><p>be able to &#39;filter&#39; Log messages for testing and debugging.</p>
+</li>
+</ul>
+<p>So, for this lab, our objective is to produce an Android App that looks something like this:</p>
+<p><img src="img/completeappv1.png" alt=""></p>
+<p>In your <b>content_donate.xml</b>, delete the current &#39;Hello World&#39; text, and drag and drop a new &#39;LargeText&#39; form widget onto the canvas, and &#39;stretch&#39; the widget to fill the canvas (like below). Look closely at the following:</p>
+<p><img src="img/lab2s201.png" alt=""></p>
+<p>Now, Double-Click the widget and you will be presented with the following:</p>
+<p><img src="img/lab2s202.png" alt=""></p>
+<p>Select the elipse (on the right hand side, indicated below)</p>
+<p><img src="img/lab2s203.png" alt=""></p>
+<p>and you will be presented with the Resources Menu</p>
+<p><img src="img/lab2s204.png" alt=""></p>
+<p>Select a &#39;New Resource-&gt;New String Value, and fill in the values as below</p>
+<p><img src="img/lab2s205.png" alt=""></p>
+<p>Double-Click the widget again and enter <b>donteTitle</b> for the <b>id</b> and hit return.</p>
+<p><img src="img/lab2s205a.png" alt=""></p>
+<p>Once completed, you&#39;ll have something like this</p>
+<p><img src="img/lab2s206.png" alt=""></p>
+<p>Note carefully the following features:</p>
+<ul>
+<li>the guides tying the text to the left, top and right corner</li>
+<li>in Outline - the name of the control has been changed from a default to &#39;donateTitle&#39;.</li>
+<li>in Properties - check the value for &#39;text&#39; and notice we have a string reference linking to our <b>strings.xml</b> (below)</li>
+</ul>
+<p><img src="img/lab2s207.png" alt=""></p>
+<p>Locate the following two files and inspect them closely:</p>
+<h2>res/layout/content_dontate.xml</h2>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;android.support.constraint.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:id=&quot;@+id/relativeLayout&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;
+    tools:context=&quot;.Donate&quot;
+    tools:layout_editor_absoluteY=&quot;81dp&quot;
+    tools:showIn=&quot;@layout/activity_donate&quot;&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/donateTitle&quot;
+        android:layout_width=&quot;188dp&quot;
+        android:layout_height=&quot;30dp&quot;
+        android:layout_alignParentEnd=&quot;true&quot;
+        android:layout_alignParentStart=&quot;true&quot;
+        android:layout_alignParentTop=&quot;true&quot;
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
+        android:text=&quot;@string/donateTitle&quot;
+        android:textAppearance=&quot;?android:attr/textAppearanceLarge&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintHorizontal_bias=&quot;0.044&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintVertical_bias=&quot;0.017&quot; /&gt;
+
+&lt;/android.support.constraint.ConstraintLayout&gt;</code></pre>
+<h2>res/values/strings.xml</h2>
+<pre><code>&lt;resources&gt;
+    &lt;string name=&quot;app_name&quot;&gt;Donation&lt;/string&gt;
+    &lt;string name=&quot;action_settings&quot;&gt;Settings&lt;/string&gt;
+    &lt;string name=&quot;donateTitle&quot;&gt;Welcome Homer&lt;/string&gt;
+&lt;/resources&gt;</code></pre>
+<p>Note the relationship between &#39;donateTitle&#39; in both files.</p>
+<p>Bring in the following string into the donate activity now - (medium text) - and follow the same procedure as above. The designer should look like this:</p>
+<p><img src="img/lab2s208.png" alt=""></p>
+<p>and our XML files will look something like this:</p>
+<h2>content_dontate.xml</h2>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;android.support.constraint.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:id=&quot;@+id/relativeLayout&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;
+    tools:context=&quot;.Donate&quot;
+    tools:layout_editor_absoluteY=&quot;81dp&quot;
+    tools:showIn=&quot;@layout/activity_donate&quot;&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/donateTitle&quot;
+        android:layout_width=&quot;188dp&quot;
+        android:layout_height=&quot;30dp&quot;
+        android:layout_alignParentEnd=&quot;true&quot;
+        android:layout_alignParentStart=&quot;true&quot;
+        android:layout_alignParentTop=&quot;true&quot;
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
+        android:text=&quot;@string/donateTitle&quot;
+        android:textAppearance=&quot;?android:attr/textAppearanceLarge&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintHorizontal_bias=&quot;0.044&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintVertical_bias=&quot;0.017&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/donateSubtitle&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_alignEnd=&quot;@+id/donateTitle&quot;
+        android:layout_alignParentStart=&quot;true&quot;
+        android:layout_below=&quot;@+id/donateTitle&quot;
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
+        android:text=&quot;@string/donateSubtitle&quot;
+        android:textAppearance=&quot;?android:attr/textAppearanceMedium&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintHorizontal_bias=&quot;0.044&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintVertical_bias=&quot;0.114&quot; /&gt;
+
+&lt;/android.support.constraint.ConstraintLayout&gt;</code></pre>
+<h2>strings.xml</h2>
+<pre><code>&lt;resources&gt;
+    &lt;string name=&quot;app_name&quot;&gt;Donation.1.0&lt;/string&gt;
+    &lt;string name=&quot;action_settings&quot;&gt;Settings&lt;/string&gt;
+    &lt;string name=&quot;donateTitle&quot;&gt;Welcome Homer&lt;/string&gt;
+    &lt;string name=&quot;donateSubtitle&quot;&gt;Please Give Generously&lt;/string&gt;
+&lt;/resources&gt;</code></pre>
 
       </div>
      
@@ -345,48 +494,77 @@ body
 <p>Place a button directly on to the activity - attached to the bottom of the screen as shown:</p>
 <p><img src="img/lab2s301.png" alt=""></p>
 <p>Following a similar procedure as in the previous step, rename the button and add an id, both called <b>donateButton</b> If all goes as expected, your xml files should be like this:</p>
-<h2>activity_donate.xml</h2>
+<h2>content_donate.xml</h2>
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+&lt;android.support.constraint.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
     xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot; android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot; android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
-    android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
-    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
-    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
+    android:id=&quot;@+id/relativeLayout&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
     app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;
-    tools:showIn=&quot;@layout/activity_donate&quot; tools:context=&quot;.Donate&quot;&gt;
+    tools:context=&quot;.Donate&quot;
+    tools:layout_editor_absoluteY=&quot;81dp&quot;
+    tools:showIn=&quot;@layout/activity_donate&quot;&gt;
 
     &lt;TextView
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:textAppearance=&quot;?android:attr/textAppearanceLarge&quot;
-        android:text=&quot;@string/donateTitle&quot;
         android:id=&quot;@+id/donateTitle&quot;
-        android:layout_alignParentTop=&quot;true&quot;
+        android:layout_width=&quot;188dp&quot;
+        android:layout_height=&quot;30dp&quot;
+        android:layout_alignParentEnd=&quot;true&quot;
         android:layout_alignParentStart=&quot;true&quot;
-        android:layout_alignParentEnd=&quot;true&quot; /&gt;
+        android:layout_alignParentTop=&quot;true&quot;
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
+        android:text=&quot;@string/donateTitle&quot;
+        android:textAppearance=&quot;?android:attr/textAppearanceLarge&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintHorizontal_bias=&quot;0.044&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintVertical_bias=&quot;0.017&quot; /&gt;
 
     &lt;TextView
+        android:id=&quot;@+id/donateSubtitle&quot;
         android:layout_width=&quot;wrap_content&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:textAppearance=&quot;?android:attr/textAppearanceMedium&quot;
-        android:text=&quot;@string/donateSubtitle&quot;
-        android:id=&quot;@+id/donateSubtitle&quot;
-        android:layout_below=&quot;@+id/donateTitle&quot;
+        android:layout_alignEnd=&quot;@+id/donateTitle&quot;
         android:layout_alignParentStart=&quot;true&quot;
-        android:layout_marginTop=&quot;27dp&quot;
-        android:layout_alignEnd=&quot;@+id/donateTitle&quot; /&gt;
+        android:layout_below=&quot;@+id/donateTitle&quot;
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
+        android:text=&quot;@string/donateSubtitle&quot;
+        android:textAppearance=&quot;?android:attr/textAppearanceMedium&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintHorizontal_bias=&quot;0.044&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintVertical_bias=&quot;0.114&quot; /&gt;
 
     &lt;Button
+        android:id=&quot;@+id/donateButton&quot;
         android:layout_width=&quot;wrap_content&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;@string/donateButton&quot;
-        android:id=&quot;@+id/donateButton&quot;
         android:layout_alignParentBottom=&quot;true&quot;
         android:layout_centerHorizontal=&quot;true&quot;
-        android:layout_marginBottom=&quot;47dp&quot; /&gt;
-&lt;/RelativeLayout&gt;</code></pre>
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
+        android:text=&quot;@string/donateButton&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintVertical_bias=&quot;0.903&quot; /&gt;
+
+&lt;/android.support.constraint.ConstraintLayout&gt;</code></pre>
 <h2>strings.xml</h2>
 <pre><code>&lt;resources&gt;
     &lt;string name=&quot;app_name&quot;&gt;Donation.1.0&lt;/string&gt;
@@ -560,16 +738,25 @@ public class Donate extends AppCompatActivity {
     Log.v(&quot;Donate&quot;, &quot;Donate Pressed!&quot;);
    }</code></pre>
 <p>Then, edit the <b>content_donate.xml</b> file - and add a new &#39;onClick&#39; <em>attribute</em> into the Button xml fragment:</p>
-<p>(the very last entry)</p>
-<pre><code>    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;@string/donateButton&quot;
-        android:id=&quot;@+id/donateButton&quot;
-        android:layout_alignParentBottom=&quot;true&quot;
-        android:layout_centerHorizontal=&quot;true&quot;
-        android:layout_marginBottom=&quot;47dp&quot;
-        android:onClick=&quot;donateButtonPressed&quot;/&gt;</code></pre>
+<pre><code>android:onClick=&quot;donateButtonPressed&quot;</code></pre>
+<p>You can also add <b>donateButtonPressed</b> to the &#39;onClick&#39; attribute in Design View. And you end up with something like this:</p>
+<pre><code>&lt;Button
+      android:id=&quot;@+id/donateButton&quot;
+      android:layout_width=&quot;wrap_content&quot;
+      android:layout_height=&quot;wrap_content&quot;
+      android:layout_alignParentBottom=&quot;true&quot;
+      android:layout_centerHorizontal=&quot;true&quot;
+      android:layout_marginBottom=&quot;8dp&quot;
+      android:layout_marginEnd=&quot;8dp&quot;
+      android:layout_marginStart=&quot;8dp&quot;
+      android:layout_marginTop=&quot;8dp&quot;
+      android:onClick=&quot;donateButtonPressed&quot;
+      android:text=&quot;@string/donateButton&quot;
+      app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+      app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+      app:layout_constraintStart_toStartOf=&quot;parent&quot;
+      app:layout_constraintTop_toTopOf=&quot;parent&quot;
+      app:layout_constraintVertical_bias=&quot;0.903&quot; /&gt;</code></pre>
 <p>Save everything and execute the app, and monitor the log as you press the button:</p>
 <p><img src="img/lab2s401.png" alt=""></p>
 <p>We now have our first interaction working!</p>
@@ -606,88 +793,146 @@ import android.widget.ProgressBar;</code></pre>
 <p>For reference purposes (try to do it yourself first!), these are the relevant generated xml files:</p>
 <h2>content_donate.xml</h2>
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+&lt;android.support.constraint.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
     xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot; android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot; android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
-    android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
-    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
-    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
+    android:id=&quot;@+id/relativeLayout&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
     app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;
-    tools:showIn=&quot;@layout/activity_donate&quot; tools:context=&quot;.Donate&quot;&gt;
+    tools:context=&quot;.Donate&quot;
+    tools:layout_editor_absoluteY=&quot;81dp&quot;
+    tools:showIn=&quot;@layout/activity_donate&quot;&gt;
 
     &lt;TextView
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:textAppearance=&quot;?android:attr/textAppearanceLarge&quot;
-        android:text=&quot;@string/donateTitle&quot;
         android:id=&quot;@+id/donateTitle&quot;
-        android:layout_alignParentTop=&quot;true&quot;
+        android:layout_width=&quot;188dp&quot;
+        android:layout_height=&quot;30dp&quot;
+        android:layout_alignParentEnd=&quot;true&quot;
         android:layout_alignParentStart=&quot;true&quot;
-        android:layout_alignParentEnd=&quot;true&quot; /&gt;
+        android:layout_alignParentTop=&quot;true&quot;
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
+        android:text=&quot;@string/donateTitle&quot;
+        android:textAppearance=&quot;?android:attr/textAppearanceLarge&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintHorizontal_bias=&quot;0.044&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintVertical_bias=&quot;0.017&quot; /&gt;
 
     &lt;TextView
+        android:id=&quot;@+id/donateSubtitle&quot;
         android:layout_width=&quot;wrap_content&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:textAppearance=&quot;?android:attr/textAppearanceMedium&quot;
-        android:text=&quot;@string/donateSubtitle&quot;
-        android:id=&quot;@+id/donateSubtitle&quot;
-        android:layout_below=&quot;@+id/donateTitle&quot;
+        android:layout_alignEnd=&quot;@+id/donateTitle&quot;
         android:layout_alignParentStart=&quot;true&quot;
-        android:layout_marginTop=&quot;27dp&quot;
-        android:layout_alignEnd=&quot;@+id/donateTitle&quot; /&gt;
+        android:layout_below=&quot;@+id/donateTitle&quot;
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
+        android:text=&quot;@string/donateSubtitle&quot;
+        android:textAppearance=&quot;?android:attr/textAppearanceMedium&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintHorizontal_bias=&quot;0.044&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintVertical_bias=&quot;0.114&quot; /&gt;
 
     &lt;Button
+        android:id=&quot;@+id/donateButton&quot;
         android:layout_width=&quot;wrap_content&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;@string/donateButton&quot;
-        android:id=&quot;@+id/donateButton&quot;
         android:layout_alignParentBottom=&quot;true&quot;
         android:layout_centerHorizontal=&quot;true&quot;
-        android:layout_marginBottom=&quot;47dp&quot;
-        android:onClick=&quot;donateButtonPressed&quot;/&gt;
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
+        android:onClick=&quot;donateButtonPressed&quot;
+        android:text=&quot;@string/donateButton&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintVertical_bias=&quot;0.903&quot; /&gt;
 
     &lt;RadioGroup
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;match_parent&quot;
-        android:layout_below=&quot;@+id/donateSubtitle&quot;
-        android:layout_alignParentStart=&quot;true&quot;
         android:id=&quot;@+id/paymentMethod&quot;
+        android:layout_width=&quot;181dp&quot;
+        android:layout_height=&quot;128dp&quot;
+        android:layout_above=&quot;@+id/progressBar&quot;
+        android:layout_alignParentStart=&quot;true&quot;
+        android:layout_below=&quot;@+id/donateSubtitle&quot;
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
         android:layout_toStartOf=&quot;@+id/amountPicker&quot;
-        android:layout_above=&quot;@+id/progressBar&quot;&gt;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintHorizontal_bias=&quot;0.042&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;@+id/donateTitle&quot;
+        app:layout_constraintVertical_bias=&quot;0.276&quot;&gt;
 
         &lt;RadioButton
-            android:layout_width=&quot;wrap_content&quot;
-            android:layout_height=&quot;wrap_content&quot;
-            android:text=&quot;@string/paypal&quot;
             android:id=&quot;@+id/PayPal&quot;
-            android:checked=&quot;false&quot; /&gt;
+            android:layout_width=&quot;97dp&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:checked=&quot;true&quot;
+            android:text=&quot;@string/paypal&quot; /&gt;
 
         &lt;RadioButton
-            android:layout_width=&quot;wrap_content&quot;
-            android:layout_height=&quot;wrap_content&quot;
-            android:text=&quot;@string/direct&quot;
             android:id=&quot;@+id/Direct&quot;
-            android:checked=&quot;false&quot; /&gt;
+            android:layout_width=&quot;97dp&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:checked=&quot;false&quot;
+            android:text=&quot;@string/direct&quot; /&gt;
     &lt;/RadioGroup&gt;
 
     &lt;NumberPicker
+        android:id=&quot;@+id/amountPicker&quot;
         android:layout_width=&quot;wrap_content&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:id=&quot;@+id/amountPicker&quot;
-        android:layout_alignTop=&quot;@+id/paymentGroup&quot;
-        android:layout_alignEnd=&quot;@+id/donateSubtitle&quot; /&gt;
+        android:layout_alignEnd=&quot;@+id/donateSubtitle&quot;
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintHorizontal_bias=&quot;0.973&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintVertical_bias=&quot;0.333&quot; /&gt;
 
     &lt;ProgressBar
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        style=&quot;?android:attr/progressBarStyleHorizontal&quot;
         android:id=&quot;@+id/progressBar&quot;
-        android:layout_alignParentStart=&quot;true&quot;
-        android:layout_alignEnd=&quot;@+id/donateSubtitle&quot;
+        style=&quot;?android:attr/progressBarStyleHorizontal&quot;
+        android:layout_width=&quot;349dp&quot;
+        android:layout_height=&quot;14dp&quot;
         android:layout_above=&quot;@+id/donateButton&quot;
-        android:indeterminate=&quot;false&quot; /&gt;
-&lt;/RelativeLayout&gt;</code></pre>
+        android:layout_alignEnd=&quot;@+id/donateSubtitle&quot;
+        android:layout_alignParentStart=&quot;true&quot;
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
+        android:indeterminate=&quot;false&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintHorizontal_bias=&quot;0.526&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintVertical_bias=&quot;0.76&quot; /&gt;
+
+&lt;/android.support.constraint.ConstraintLayout&gt;</code></pre>
 <h2>strings.xml</h2>
 <pre><code>&lt;resources&gt;
     &lt;string name=&quot;app_name&quot;&gt;Donation.1.0&lt;/string&gt;
