@@ -128,10 +128,6 @@ body
       01
     </a>
     
-    <a class="item" data-tab="02-Dave's MBP">
-      02-Dave's MBP
-    </a>
-    
     <a class="item" data-tab="02">
       02
     </a>
@@ -231,7 +227,7 @@ body
 
       </div>
      
-      <div  class="ui tab segment lab" data-tab="02-Dave's MBP">
+      <div  class="ui tab segment lab" data-tab="02">
         <h1>Step 02 - Donate Layout &amp; Resources</h1>
 <p>On completion of this lab you&#39;ll be able to</p>
 <ul>
@@ -366,119 +362,6 @@ body
         app:layout_constraintVertical_bias=&quot;0.114&quot; /&gt;
 
 &lt;/android.support.constraint.ConstraintLayout&gt;</code></pre>
-<h2>strings.xml</h2>
-<pre><code>&lt;resources&gt;
-    &lt;string name=&quot;app_name&quot;&gt;Donation.1.0&lt;/string&gt;
-    &lt;string name=&quot;action_settings&quot;&gt;Settings&lt;/string&gt;
-    &lt;string name=&quot;donateTitle&quot;&gt;Welcome Homer&lt;/string&gt;
-    &lt;string name=&quot;donateSubtitle&quot;&gt;Please Give Generously&lt;/string&gt;
-&lt;/resources&gt;</code></pre>
-
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="02">
-        <h1>Step 02 - Donate Layout &amp; Resources</h1>
-<p>On completion of this lab you&#39;ll be able to</p>
-<ul>
-<li><p>design an initial layout for the app.</p>
-</li>
-<li><p>add different widgets (such as a button, text and picker) to a layout.</p>
-</li>
-<li><p>implement basic event handling to cause some action on the click of a button.</p>
-</li>
-<li><p>be able to &#39;filter&#39; Log messages for testing and debugging.</p>
-</li>
-</ul>
-<p>So, for this lab, our objective is to produce an Android App that looks something like this:</p>
-<p><img src="img/completeappv1.png" alt=""></p>
-<p>In your <b>content_donate.xml</b>, delete the current &#39;Hello World&#39; text, and drag and drop a new &#39;LargeText&#39; form widget onto the canvas, and &#39;stretch&#39; the widget to fill the canvas (like below). Look closely at the following:</p>
-<p>NOTE : in Android Studio 3.0 the &#39;LargeText&#39; has been replaced with a standard &#39;TextView&#39; widget, which you can then set to different sizes and fonts (much like MS Word).</p>
-<p><img src="img/lab2s201.png" alt=""></p>
-<p>Now, Double-Click the widget and you will be presented with the following:</p>
-<p><img src="img/lab2s202.png" alt=""></p>
-<p>Select the elipse (on the right hand side, indicated below)</p>
-<p><img src="img/lab2s203.png" alt=""></p>
-<p>and you will be presented with the Resources Menu</p>
-<p><img src="img/lab2s204.png" alt=""></p>
-<p>Select a &#39;New Resource-&gt;New String Value, and fill in the values as below</p>
-<p><img src="img/lab2s205.png" alt=""></p>
-<p>Double-Click the widget again and enter <b>donteTitle</b> for the <b>id</b> and hit return.</p>
-<p><img src="img/lab2s205a.png" alt=""></p>
-<p>Once completed, you&#39;ll have something like this</p>
-<p><img src="img/lab2s206.png" alt=""></p>
-<p>Note carefully the following features:</p>
-<ul>
-<li>the guides tying the text to the left, top and right corner</li>
-<li>in Outline - the name of the control has been changed from a default to &#39;donateTitle&#39;.</li>
-<li>in Properties - check the value for &#39;text&#39; and notice we have a string reference linking to our <b>strings.xml</b> (below)</li>
-</ul>
-<p><img src="img/lab2s207.png" alt=""></p>
-<p>Locate the following two files and inspect them closely:</p>
-<h2>res/layout/content_dontate.xml</h2>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot; android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot; android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
-    android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
-    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
-    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
-    app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;
-    tools:showIn=&quot;@layout/activity_donate&quot; tools:context=&quot;.Donate&quot;&gt;
-
-    &lt;TextView
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:textAppearance=&quot;?android:attr/textAppearanceLarge&quot;
-        android:text=&quot;@string/donateTitle&quot;
-        android:id=&quot;@+id/donateTitle&quot;
-        android:layout_alignParentTop=&quot;true&quot;
-        android:layout_alignParentStart=&quot;true&quot;
-        android:layout_alignParentEnd=&quot;true&quot; /&gt;
-&lt;/RelativeLayout&gt;</code></pre>
-<h2>res/values/strings.xml</h2>
-<pre><code>&lt;resources&gt;
-    &lt;string name=&quot;app_name&quot;&gt;Donation&lt;/string&gt;
-    &lt;string name=&quot;action_settings&quot;&gt;Settings&lt;/string&gt;
-    &lt;string name=&quot;donateTitle&quot;&gt;Welcome Homer&lt;/string&gt;
-&lt;/resources&gt;</code></pre>
-<p>Note the relationship between &#39;donateTitle&#39; in both files.</p>
-<p>Bring in the following string into the donate activity now - (medium text) - and follow the same procedure as above. The designer should look like this:</p>
-<p><img src="img/lab2s208.png" alt=""></p>
-<p>and our XML files will look something like this:</p>
-<h2>content_dontate.xml</h2>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot; android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot; android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
-    android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
-    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
-    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
-    app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;
-    tools:showIn=&quot;@layout/activity_donate&quot; tools:context=&quot;.Donate&quot;&gt;
-
-    &lt;TextView
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:textAppearance=&quot;?android:attr/textAppearanceLarge&quot;
-        android:text=&quot;@string/donateTitle&quot;
-        android:id=&quot;@+id/donateTitle&quot;
-        android:layout_alignParentTop=&quot;true&quot;
-        android:layout_alignParentStart=&quot;true&quot;
-        android:layout_alignParentEnd=&quot;true&quot; /&gt;
-
-    &lt;TextView
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:textAppearance=&quot;?android:attr/textAppearanceMedium&quot;
-        android:text=&quot;@string/donateSubtitle&quot;
-        android:id=&quot;@+id/donateSubtitle&quot;
-        android:layout_below=&quot;@+id/donateTitle&quot;
-        android:layout_alignParentStart=&quot;true&quot;
-        android:layout_marginTop=&quot;27dp&quot;
-        android:layout_alignEnd=&quot;@+id/donateTitle&quot; /&gt;
-&lt;/RelativeLayout&gt;</code></pre>
 <h2>strings.xml</h2>
 <pre><code>&lt;resources&gt;
     &lt;string name=&quot;app_name&quot;&gt;Donation.1.0&lt;/string&gt;
