@@ -194,7 +194,7 @@ body
 <ul>
 <li><a href="archives/Donation.2.0.Starter.zip">Donation.2.0.zip</a></li>
 </ul>
-<p>I&#39;d recommend downloading the &#39;Starter Code&#39;, but if you wish to continue using your version (1.5) you would need to &#39;refactor&#39; it to <b>Donation.2.0</b>. At the time of writing, Android Studio&#39;s refactoring features and tools are still a bit iffy :-) but you could go ahead and</p>
+<p>I&#39;d recommend downloading the &#39;Starter Code&#39;, but if you wish to continue using your version (1.5) you would need to &#39;refactor&#39; it to <b>Donation.2.0</b>. So, all you need to do is:</p>
 <ol>
 <li>Close the current project</li>
 <li>Copy and rename the Donation.1.5 folder to Donation.2.0</li>
@@ -261,29 +261,40 @@ public class Donate extends AppCompatActivity {
 <p><img src="img/lab3s304.png" alt=""></p>
 <p>This is the layout file itself, if you just want to overwrite the xml:</p>
 <pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:orientation=&quot;vertical&quot; android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;&gt;
+&lt;android.support.constraint.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:id=&quot;@+id/relativeLayout2&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;
+    tools:layout_editor_absoluteY=&quot;81dp&quot;&gt;
 
     &lt;TextView
+        android:id=&quot;@+id/reportTitle&quot;
         android:layout_width=&quot;wrap_content&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:textAppearance=&quot;?android:attr/textAppearanceLarge&quot;
+        android:layout_marginBottom=&quot;8dp&quot;
+        android:layout_marginEnd=&quot;8dp&quot;
+        android:layout_marginStart=&quot;8dp&quot;
+        android:layout_marginTop=&quot;8dp&quot;
         android:text=&quot;@string/reportTitle&quot;
-        android:id=&quot;@+id/reportTitle&quot;
-        android:layout_marginLeft=&quot;0dp&quot;
-        android:layout_marginTop=&quot;31dp&quot;
-        android:layout_alignParentTop=&quot;true&quot;
-        android:layout_alignParentStart=&quot;true&quot;
-        android:layout_alignParentEnd=&quot;true&quot; /&gt;
+        android:textAppearance=&quot;?android:attr/textAppearanceLarge&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintHorizontal_bias=&quot;0.026&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot;
+        app:layout_constraintVertical_bias=&quot;0.017&quot; /&gt;
 
     &lt;ListView
+        android:id=&quot;@+id/reportList&quot;
         android:layout_width=&quot;wrap_content&quot;
         android:layout_height=&quot;wrap_content&quot;
-        android:id=&quot;@+id/reportList&quot;
-        android:layout_below=&quot;@+id/reportTitle&quot;
-        android:layout_alignParentStart=&quot;true&quot; /&gt;
-&lt;/RelativeLayout&gt;</code></pre>
+        android:layout_marginTop=&quot;58dp&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;
+&lt;/android.support.constraint.ConstraintLayout&gt;</code></pre>
 <p>Introduce a new &quot;Empty Activity&quot; into <strong>ie.app.activities</strong> to render this activity - but be careful <strong>NOT</strong> to &#39;<strong><em>Generate Layout File</em></strong>&#39; (as we have one already):</p>
 <p><img src="img/lab3s305.png" alt=""></p>
 <p>and replace it with the following:</p>
