@@ -1,0 +1,666 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+     
+
+     <style>
+       
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.ui.segment.pushable
+{
+  margin: 0;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+
+
+     </style>
+
+   </head>
+
+  <body>
+    
+
+<style>
+  
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom:thin solid black;
+}
+
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+body
+{
+  overflow-y: scroll;
+}
+
+.pushable > .pusher
+{
+  padding-bottom: 1.5rem;
+}
+
+.ui.segment.pushable
+{
+  margin: 0;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+
+
+</style>
+
+<div class="ui fixed top pointing inverted stackable menu labmenu">
+  <header class="header item">
+    <i id="toc" class="sitemap icon"></i>
+    <a href="../index.html">
+      04: Data Persistence in Android
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    
+    <a class="item" data-tab="Lab-05-1">
+      Lab-05-1
+    </a>
+    
+    <a class="item" data-tab="01">
+      01
+    </a>
+    
+    <a class="item" data-tab="02">
+      02
+    </a>
+    
+    <a class="item" data-tab="03">
+      03
+    </a>
+    
+    <a class="item" data-tab="04">
+      04
+    </a>
+    
+    <a class="item" data-tab="05">
+      05
+    </a>
+    
+    <a class="item" data-tab="06">
+      06
+    </a>
+    
+    <a class="item" data-tab="07">
+      07
+    </a>
+    
+    <a class="item" data-tab="08">
+      08
+    </a>
+    
+    <a class="item" data-tab="09">
+      09
+    </a>
+    
+    <a class="item" data-tab="Solution">
+      Solution
+    </a>
+    
+    <div class="item">
+      
+    </div>
+  </div>
+</div>
+
+<div class="ui segment pushable">
+  <div class="ui inverted labeled icon left inline vertical sidebar menu">
+    <br><br>
+    
+      
+        <a class="item" href="../../topic01-overview-and-tools/book-a-lab-01/index.html">
+          Lab-01
+        </a>
+      
+    
+      
+        <a class="item" href="../../topic01-overview-and-tools/book-b-lab-02/index.html">
+          Lab-02
+        </a>
+      
+    
+      
+        <a class="item" href="../../topic02-activities-and-navigation/book-a-donation-02/index.html">
+          Lab-03
+        </a>
+      
+    
+      
+        <a class="item" href="../../topic03-app-structure/book-a-donation-03/index.html">
+          Lab-04
+        </a>
+      
+    
+      
+        <a class="active item" href="../../topic04-persistence/book-a-donation-04/index.html">
+          Lab-05-1
+        </a>
+      
+    
+      
+        <a class="item" href="../../topic04-persistence/book-b-donation-realm/index.html">
+          Lab-05-2
+        </a>
+      
+    
+  </div>
+  <div class="pusher" tabindex="-1">
+    <div class="ui basic segment" id="labchat">
+      <br>
+      
+      <div  class="ui tab segment lab" data-tab="Lab-05-1">
+        <h1>Objectives</h1>
+<p>In <b>Donation.4.0</b> you will build on the previous lab and add in some new features and Database Support, and an Application Object. On completion of this lab you&#39;ll be able to add Database Support to an Android Application and work with an &#39;Application&#39; object.</p>
+<p><b>NOTE : These Labs we build in a previous Version to Android Studio 3.0 so be aware that some images and instructions may not be up to date. Also, when replacing any XML with that from the Lab, the Widgets will not be &#39;anchored&#39; so it would be advisable to go ahead and &#39;anchor&#39; your widgets to improve the future design of your layouts.</b></p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="01">
+        <h1>Setup - Starter Code</h1>
+<p>As with the previous labs, you can download the solution/starter code for <a href="archives/Donation.4.0.Starter.zip">Donation.4.0.starter</a>, or continue on with your own version.</p>
+<p>Your current project (after renaming/copying) should looks as follows:</p>
+<p><img src="img/lab5s101.png" alt=""></p>
+<p>In this lab, you are required to do the following:</p>
+<ul>
+<li>Add a new Menu Option - &#39;Reset&#39; - to clear out any donations after the target is reached</li>
+<li>Add Database Support to Donation to manage the donations made</li>
+<li>Refactor existing Classes to accommodate the new database classes</li>
+</ul>
+<p>The following steps will guide you through these requirements, so we&#39;ll start with the Menu Option.</p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="02">
+        <h1>Adding a new Menu Option</h1>
+<p>First of all, confirm that the current Menu looks like this:</p>
+<p><img src="img/lab5s201.png" alt=""></p>
+<p>but we want something like this:</p>
+<p><img src="img/lab5s202.png" alt=""></p>
+<p>The first thing to do is add in a new resource in strings.xml (or use Android Studio (Alt + Return) to fix the string resource error if you paste in the menu item directly)</p>
+<pre><code class="lang-xml">     &lt;string name=&quot;menuReset&quot;&gt;Reset&lt;/string&gt;</code></pre>
+<p>and then the corresponding menu item in donate.xml</p>
+<pre><code class="lang-xml">     &lt;item
+        android:id=&quot;@+id/menuReset&quot;
+        android:orderInCategory=&quot;100&quot;
+        app:showAsAction=&quot;never&quot;
+        android:title=&quot;@string/menuReset&quot;
+        android:onClick=&quot;reset&quot;/&gt;</code></pre>
+<p>It&#39;s probably worth removing the &#39;Settings&#39; menu item at this stage too, and its related method in the Base class. Next, edit <b>Base.java</b> and add in the following method stub</p>
+<pre><code class="lang-java">public void reset(MenuItem item) {}</code></pre>
+<p>to ensure our app won&#39;t crash when the menu loads (and looks for a method &#39;reset&#39;)</p>
+<p>Run the app again and confirm you get the following Menu :</p>
+<p><img src="img/lab5s202.png" alt=""></p>
+<p>We can&#39;t implement this menu option fully yet, so for the moment, we&#39;ll just &#39;reset&#39; the target amount back to zero (0) - Step 03.</p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="03">
+        <h1>Resetting the Target Amount</h1>
+<p>This is more of an interim step but is necessary to ensure the menu event handler for the &#39;Reset&#39; option is working correctly.</p>
+<p>First, edit <b>Donate.java</b> and introduce an implementation of the &#39;reset&#39; method</p>
+<pre><code class="lang-java"> @Override
+  public void reset(MenuItem item)
+  {
+        // Your implementation goes here
+  }</code></pre>
+<p>the</p>
+<pre><code class="lang-java">@Override</code></pre>
+<p>annotation is important - can you explain why?</p>
+<p>So add in the code necessary to deal with the Reset Menu option being selected, and reset the <i>totalDonated</i> back to zero (0). You also need to update the Donate UI to reflect this reset, so try and have a go at that too.</p>
+<p>Run the app again to confirm that the &#39;Reset&#39; Menu option is now functioning.</p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="04">
+        <h1>Application Object</h1>
+<p>Before we complete this step, here&#39;s the code you need for the previous step.</p>
+<pre><code class="lang-java"> @Override
+  public void reset(MenuItem item)
+  {
+    totalDonated = 0;
+    amountTotal.setText(&quot;$&quot; + totalDonated);
+    donations.clear();
+  }</code></pre>
+<p>In order to keep out application design coherent, we now bring in an &#39;Application&#39; object.</p>
+<p>Create a new package called &#39;ie.app.main&#39; and incorporate this class here:</p>
+<pre><code class="lang-java">package ie.app.main;
+
+import android.app.Application;
+import android.util.Log;
+
+public class DonationApp extends Application
+{
+  @Override
+  public void onCreate()
+  {
+    super.onCreate();
+    Log.v(&quot;Donate&quot;, &quot;Donation App Started&quot;);
+  }
+}</code></pre>
+<p>Application objects need to be references in the AndroidManifest.xml - at the very top as &#39;andorid:name&#39;</p>
+<pre><code class="lang-xml">    &lt;application
+        android:allowBackup=&quot;true&quot;
+        android:icon=&quot;@mipmap/ic_launcher&quot;
+        android:label=&quot;@string/app_name&quot;
+        android:supportsRtl=&quot;true&quot;
+        android:theme=&quot;@style/AppTheme&quot;
+        android:name=&quot;ie.app.main.DonationApp&quot;&gt;</code></pre>
+<p>Make sure the &#39;Donation App Started&#39; appears in the logs to verify that it has actually been engaged correctly, when you launch the app.</p>
+<p><img src="img/lab5s401.png" alt=""></p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="05">
+        <h1>Donation Model</h1>
+<p>We now need to refactor the Base class (next Step) and move the donation related attributes and method (i.e. the variables target, totalDonated and the donations list, and the newDonation() method) into our DonationApp class.</p>
+<p>This is a revised version of DonationApp - which now manages a list of donations. It also centralises the &#39;makeDonation&#39; event implementing it as a method. We also &#39;open&#39; and  &#39;close&#39; our database here. Replace your DonationApp class with this one:</p>
+<pre><code class="lang-java">package ie.app.main;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Application;
+import android.util.Log;
+import android.widget.Toast;
+
+import ie.app.models.Donation;
+
+public class DonationApp extends Application
+{
+    public final int       target       = 10000;
+    public int             totalDonated = 0;
+    public List &lt;Donation&gt; donations    = new ArrayList&lt;Donation&gt;();
+
+    public boolean newDonation(Donation donation)
+    {
+        boolean targetAchieved = totalDonated &gt; target;
+        if (!targetAchieved) {
+            donations.add(donation);
+            totalDonated += donation.amount;
+        }
+        else
+            Toast.makeText(this, &quot;Target Exceeded!&quot;, Toast.LENGTH_SHORT).show();
+
+        return targetAchieved;
+    }
+
+    @Override
+    public void onCreate()
+    {
+        super.onCreate();
+        Log.v(&quot;Donate&quot;, &quot;Donation App Started&quot;);
+    }
+}</code></pre>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="06">
+        <h1>Base Class Refactoring</h1>
+<p>The Base activity can now be completely refactored to make use of the DonationApp object. You <b>MAY</b> have errors at the end of this step, due to referencing our (as yet missing) database classes - but we&#39;ll fix those in the next few steps.</p>
+<p>This is our new Base class</p>
+<pre><code class="lang-java">package ie.app.activities;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.os.Bundle;
+
+import ie.app.R;
+import ie.app.main.DonationApp;
+
+public class Base extends AppCompatActivity {
+
+    public DonationApp app;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        app = (DonationApp) getApplication();
+        app.dbManager.setTotalDonated(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_donate, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu (Menu menu){
+        super.onPrepareOptionsMenu(menu);
+        MenuItem report = menu.findItem(R.id.menuReport);
+        MenuItem donate = menu.findItem(R.id.menuDonate);
+        MenuItem reset = menu.findItem(R.id.menuReset);
+
+        if(app.dbManager.getAll().isEmpty())
+        {
+            report.setEnabled(false);
+            reset.setEnabled(false);
+        }
+        else {
+            report.setEnabled(true);
+            reset.setEnabled(true);
+        }
+        if(this instanceof Donate){
+            donate.setVisible(false);
+            if(!app.dbManager.getAll().isEmpty())
+            {
+                report.setVisible(true);
+                reset.setEnabled(true);
+            }
+        }
+        else {
+            report.setVisible(false);
+            donate.setVisible(true);
+            reset.setVisible(false);
+        }
+        return true;
+    }
+
+    public void report(MenuItem item)
+    {
+        startActivity (new Intent(this, Report.class));
+    }
+
+    public void donate(MenuItem item)
+    {
+        startActivity (new Intent(this, Donate.class));
+    }
+
+    public void reset(MenuItem item) {}
+}</code></pre>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="07">
+        <h1>Adding Database Support</h1>
+<p>Once you import the necessary Database classes, (to fix the errors from the previous step) this step is relatively straight forward - all you have to do is replace the method calls that manages the <b><i>donationList</i></b> with the respective <b><i>dbManager</i></b> calls.</p>
+<p>First thing to do is download the necessary database classes in the <a href="archives/database.zip">database</a> archive and add them to a new <i>ie.app.database</i> package in your project.</p>
+<p>Take a few moments to investigate the classes and familiarise yourself with the methods you&#39;ll be using.</p>
+<p>There are a few classes you&#39;ll need to modify to add database support to your project, but initially, you need to create an instance of <b><i>DBManager</i></b> in <b>Base.java</b> and both open/close the database when necessary, so refer to the Lecture Material to complete this.</p>
+<p>Next, update your <b>DonationApp</b> class with the following:</p>
+<pre><code class="lang-java">package ie.app.main;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Application;
+import android.util.Log;
+import android.widget.Toast;
+
+import ie.app.database.DBManager;
+import ie.app.models.Donation;
+
+public class DonationApp extends Application
+{
+    public final int       target       = 10000;
+    public int             totalDonated = 0;
+    public List &lt;Donation&gt; donations    = new ArrayList&lt;Donation&gt;();
+    public DBManager dbManager;
+
+
+    public boolean newDonation(Donation donation)
+    {
+        boolean targetAchieved = totalDonated &gt; target;
+        if (!targetAchieved) {
+            dbManager.add(donation);
+            totalDonated += donation.amount;
+        }
+        else
+            Toast.makeText(this, &quot;Target Exceeded!&quot;, Toast.LENGTH_SHORT).show();
+
+        return targetAchieved;
+    }
+
+    @Override
+    public void onCreate()
+    {
+        super.onCreate();
+        Log.v(&quot;Donate&quot;, &quot;Donation App Started&quot;);
+        dbManager = new DBManager(this);
+        dbManager.open();
+        Log.v(&quot;Donate&quot;, &quot;Database Opened&quot;);
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        dbManager.close();
+        Log.v(&quot;Donate&quot;, &quot;Database Closed&quot;);
+    }
+}</code></pre>
+<p><b>Note the references to a new <i>dbManager</i> object.</b></p>
+<p>Also, our Donation class needs a slight refactoring, so replace the current class with this one.</p>
+<pre><code class="lang-java">public class Donation
+{
+  public int    id;
+  public int    amount;
+  public String method;
+
+  public Donation (int amount, String method)
+  {
+    this.amount = amount;
+    this.method = method;
+  }
+
+  public Donation ()
+  {
+    this.amount = 0;
+    this.method = &quot;&quot;;
+  }
+
+  public String toString()
+  {
+    return id + &quot;, &quot; + amount + &quot;, &quot; + method;
+  }
+}</code></pre>
+<p>Once you make these changes, commenting out the donationList List, (and save the file) you&#39;ll get a number of errors, which actually indicates which classes you need to now update and add the database calls (and remove the donationList calls).</p>
+<p>Each error requires only one line of code to be fixed, so have a go and updating each of the classes (and we&#39;ll have a look at the solution near the end of the Practical Lab).</p>
+<p>Once you fix all the errors, and run the app again, you should still be able to make donations - but this time those donations are stored in a database.</p>
+<p>And as a final check, if you shut down the app and restart it again, you should still be able to see the donations Report.</p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="08">
+        <h1>Resetting the Donations</h1>
+<p>The last step in this lab involves deleting all the donations in the database when the user wishes to &#39;Reset&#39;.</p>
+<p>There&#39;s actually not a lot required in this step - all you need to do is call <b>reset()</b> on your database object when the user selects the Menu option, so modify your reset method (in your Donate.java) as follows:</p>
+<pre><code class="lang-java">  @Override
+  public void reset(MenuItem item)
+  {
+      app.dbManager.reset();
+        app.totalDonated = 0;
+        amountTotal.setText(&quot;$&quot; + app.totalDonated);
+  }</code></pre>
+<p>You also need to update your <i>onPrepareOptionsMenu()</i> method in your <b>Base</b> class to handle the &#39;Reset&#39; menu option being disabled/displayed properly, so refer to the lecture material for this.</p>
+<p>That&#39;s about it really - with one exception. There&#39;s a small bug in the app related to when the app restarts and the target <b>HAS NOT</b> been reached.</p>
+<p>Can you find it, and more importantly, fix it?</p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="09">
+        <h1>Android Device Monitor</h1>
+<p>As an exercise of sorts, you should become familiar with the Android Device Monitor, particularly how it relates to viewing your database on the emulator/device.</p>
+<h2><img src="img/lab5s901.png" alt=""></h2>
+<p>In Android Studio, you launch the Android Device Monitor as follows:</p>
+<p>Tools-&gt;Android-&gt;Android Device Monitor (as below)</p>
+<p><img src="img/lab5s902.png" alt=""></p>
+<p>Next, you need to navigate to the data/data folder within the application package on the device (in our case ie.app) like so:</p>
+<p><img src="img/lab5s903.png" alt=""></p>
+<p>Then, scroll/find your database (donations.db) in the ie.app.databases folder:</p>
+<p><img src="img/lab5s904.png" alt=""></p>
+<p>Select the &quot;Pull a file from the Device&quot; on the top right-hand-side of the window:</p>
+<p><img src="img/lab5s905.png" alt=""></p>
+<p>and save your database file to a local folder.</p>
+<p>Next download and install <a href="http://sqlitebrowser.org">sqlitebrowser</a> which will allow us to view our database graphically.</p>
+<p><img src="img/lab5s906.png" alt=""></p>
+<p>Launch your sqlitebrowser app/program to get this window:</p>
+<p><img src="img/lab5s907.png" alt=""></p>
+<p>and then &#39;Open Database&#39; selecting the database you pulled from the device. If everything goes to plan, you should be able to view your database table(s) and their content, as well as the SQL that created the tables.</p>
+<p>Below, we can see a donations table with 3 donations</p>
+<p><img src="img/lab5s908.png" alt=""></p>
+<p>and the corresponding entries in our Android App.</p>
+<p><img src="img/lab5s909.png" alt=""></p>
+
+      </div>
+     
+      <div  class="ui tab segment lab" data-tab="Solution">
+        <h1>Solution</h1>
+<p>This is a solution to the lab:</p>
+<ul>
+<li><a href="archives/Donation.4.0.zip">Donation.4.0</a></li>
+</ul>
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+<!--<div class="ui bottom fixed borderless right menu">
+  <div class="ui right tiny menu">
+    <div class="ui mini message segment">
+      .
+      <a href="http://creativecommons.org/licenses/by-nc/4.0/"
+         title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+         target="_blank">Creative Commons License
+      </a>
+    </div>
+  </div>
+</div>-->
+
+<script>
+  $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
+});
+
+</script>
+
+
+
+    <footer>
+
+    </footer>
+    <script>
+      $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+    </script>
+  </body>
+
+ </html>

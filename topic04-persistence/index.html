@@ -1,0 +1,460 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+     
+
+     <style>
+       
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.ui.segment.pushable
+{
+  margin: 0;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+
+
+     </style>
+
+   </head>
+
+  <body>
+    
+
+  
+<header class="ui center aligned middle aligned stackable grid segment">
+
+  
+    
+  <a class="ui blue left corner label">
+    <div id="showTOC" class="popup" data-content="Reveal TOC">
+      <i id="toc" class="sitemap big  icon"></i>
+    </div>
+  </a>
+
+  
+
+  <div class="two wide column">
+    <i class="huge  icon"></i></a>
+  </div>
+
+
+  <div class="ui six wide column">
+    <h2> 04: Data Persistence in Android </h2>
+    <div class="ui tiny blue label">
+      <a href="mailto:ddrohan@wit.ie">David Drohan</a>, <a href="mailto:edeleastar@wit.ie">Eamonn de Leastar</a> & <a href="mailto:johnjfitzgerald@outlook.com">John Fitzgerald</a>, <a href="https://www.wit.ie/schools/science/department_of_computing_maths"> WIT </a>
+    </div>
+  </div>
+
+  <div class="ui two wide column">
+    
+      
+  <div class="two wide column sitemap">
+    <div class="popup" data-content="To the top level Topics for this Module...">
+      <a href="../index.html"> <i class="huge home icon"></i> <br> Module Home </a>
+    </div>
+  </div>
+
+    
+  </div>
+
+  <div class="three wide column">
+    
+  
+
+  </div>
+
+  <div class="three wide column">
+    
+    
+      
+  <div class="ui equal width center aligned grid segment">
+    
+      
+        <div class="column">
+          <div class="popup" data-content="All talk's in Course">
+            <a href="../talkwall.html"> <i class="big object group icon"></i> </a>
+            <div class="ui blue mini circular label">
+              14
+            </div>
+          </div>
+        </div>
+      
+    
+      
+        <div class="column">
+          <div class="popup" data-content="All lab's in Course">
+            <a href="../labwall.html"> <i class="big lab icon"></i> </a>
+            <div class="ui blue mini circular label">
+              6
+            </div>
+          </div>
+        </div>
+      
+    
+      
+        <div class="column">
+          <div class="popup" data-content="All video's in Course">
+            <a href="../videowall.html"> <i class="big film icon"></i> </a>
+            <div class="ui blue mini circular label">
+              1
+            </div>
+          </div>
+        </div>
+      
+    
+      
+    
+      
+    
+  </div>
+
+    
+  </div>
+
+</header>
+
+  
+
+
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <div class="header">
+        <a class="item" href="#">
+          
+        </a>
+      </div>
+      <div class="menu">
+        
+          <a class="item" href="talk-8-persistence/persistence.pdf">
+            Android & Shared Preferences
+          </a>
+        
+          <a class="item" href="talk-9-sqlite/sqlite.pdf">
+            Android & SQLite
+          </a>
+        
+          <a class="item" href="talk-99-realm/realm.pdf">
+            Android & Realm
+          </a>
+        
+          <a class="item" href="book-a-donation-04/index.html">
+            Lab-05-1
+          </a>
+        
+          <a class="item" href="book-b-donation-realm/index.html">
+            Lab-05-2
+          </a>
+        
+      </div>
+    </div>
+    <div class="pusher">
+      
+        
+  
+
+      
+        
+  
+    <section class="ui raised stackable segment container">
+      <div class="ui blue left ribbon large label"> 
+  
+    Slides
+  
+  
+  
+ </div>
+      <div class="ui centered four doubling stackable cards">
+        
+          
+            
+
+<div class="ui  raised link  card">
+
+  <div class="center aligned content">
+    <div class="right floated meta"><i class="huge object group icon"></i></div>
+    <div class="header"> Android & Shared Preferences</div>
+  </div>
+
+  <a href=
+  
+    "talk-8-persistence/persistence.pdf" target="_blank">
+  
+
+    <div class="image">
+      <img class="ui bordered rounded image" src="talk-8-persistence/persistence.jpg">
+    </div>
+  </a>
+
+  <div class="center aligned content">
+    <div class="description">
+      <p>This simple application is already composed of a range of classes related to each other in via different types of relationships. We can capture this design graphically in UML, exploring the true nature of the structure of the app.</p>
+
+    </div>
+  </div>
+  
+
+  
+
+</div>
+
+          
+        
+          
+            
+
+<div class="ui  raised link  card">
+
+  <div class="center aligned content">
+    <div class="right floated meta"><i class="huge object group icon"></i></div>
+    <div class="header"> Android & SQLite</div>
+  </div>
+
+  <a href=
+  
+    "talk-9-sqlite/sqlite.pdf" target="_blank">
+  
+
+    <div class="image">
+      <img class="ui bordered rounded image" src="talk-9-sqlite/sqlite.jpg">
+    </div>
+  </a>
+
+  <div class="center aligned content">
+    <div class="description">
+      <p>This simple application is already composed of a range of classes related to each other in via different types of relationships. We can capture this design graphically in UML, exploring the true nature of the structure of the app.</p>
+
+    </div>
+  </div>
+  
+
+  
+
+</div>
+
+          
+        
+          
+            
+
+<div class="ui  raised link  card">
+
+  <div class="center aligned content">
+    <div class="right floated meta"><i class="huge object group icon"></i></div>
+    <div class="header"> Android & Realm</div>
+  </div>
+
+  <a href=
+  
+    "talk-99-realm/realm.pdf" target="_blank">
+  
+
+    <div class="image">
+      <img class="ui bordered rounded image" src="talk-99-realm/realm.png">
+    </div>
+  </a>
+
+  <div class="center aligned content">
+    <div class="description">
+      <p>This simple application is already composed of a range of classes related to each other in via different types of relationships. We can capture this design graphically in UML, exploring the true nature of the structure of the app.</p>
+
+    </div>
+  </div>
+  
+    <div class="extra content center aligned">
+      <div class="ui segment">
+        <div class="ui embed" data-source="youtube" data-id="F0FiqsGT20U"></div>
+      </div>
+      <a href="https://youtu.be/F0FiqsGT20U" target="_blank"> video link</a>
+    </div>
+  
+
+  
+
+</div>
+
+          
+        
+      </div>
+    </section>
+  
+
+      
+        
+  
+    <section class="ui raised stackable segment container">
+      <div class="ui blue left ribbon large label"> 
+  
+  
+    Labs
+  
+  
+ </div>
+      <div class="ui centered four doubling stackable cards">
+        
+          
+            
+
+<div class="ui  raised link  card">
+
+  <div class="center aligned content">
+    <div class="right floated meta"><i class="huge lab icon"></i></div>
+    <div class="header"> Lab-05-1</div>
+  </div>
+
+  <a href=
+  
+    "book-a-donation-04/index.html">
+  
+
+    <div class="image">
+      <img class="ui bordered rounded image" src="book-a-donation-04/img/main.png">
+    </div>
+  </a>
+
+  <div class="center aligned content">
+    <div class="description">
+      <p>In <b>Donation.4.0</b> you will build on the previous lab and add in some new features and Database Support, and an Application Object. On completion of this lab you&#39;ll be able to add Database Support to an Android Application and work with an &#39;Application&#39; object.</p>
+
+    </div>
+  </div>
+  
+
+  
+
+</div>
+
+          
+        
+          
+            
+
+<div class="ui  raised link  card">
+
+  <div class="center aligned content">
+    <div class="right floated meta"><i class="huge lab icon"></i></div>
+    <div class="header"> Lab-05-2</div>
+  </div>
+
+  <a href=
+  
+    "book-b-donation-realm/index.html">
+  
+
+    <div class="image">
+      <img class="ui bordered rounded image" src="book-b-donation-realm/img/main.png">
+    </div>
+  </a>
+
+  <div class="center aligned content">
+    <div class="description">
+      <p>In <b>Donation.4.0.Realm</b> you will again build on the previous lab and add in some new features and Database Support, and an Application Object. It&#39;s actually very similar to <b>Donation.4.0</b>, but with Realm support, the code base is reduced substantially.</p>
+
+    </div>
+  </div>
+  
+
+  
+
+</div>
+
+          
+        
+      </div>
+    </section>
+  
+
+      
+        
+  
+
+      
+        
+  
+
+      
+        
+  
+
+      
+    </div>
+  </div>
+
+
+    <footer>
+
+    </footer>
+    <script>
+      $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+    </script>
+  </body>
+
+ </html>
