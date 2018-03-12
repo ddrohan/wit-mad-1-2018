@@ -1,30 +1,22 @@
- <!DOCTYPE html>
- <html>
-   <head>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
 
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-     
-
-     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
-
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
-     <script>hljs.initHighlightingOnLoad();</script>
-
-     
-
-     <style>
-       
-
-body 
+body
 {
   font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
 }
@@ -46,18 +38,6 @@ figcaption
   padding: 1rem 0;
   overflow: visible;
 }
-
-
-
-     </style>
-
-   </head>
-
-  <body>
-    
-
-<style>
-  
 
 code
 {
@@ -109,105 +89,110 @@ body
 
 
 
-</style>
+    </style>
+  </head>
 
-<div class="ui fixed top pointing inverted stackable menu labmenu">
-  <header class="header item">
-    <i id="toc" class="sitemap icon"></i>
-    <a href="../index.html">
-      03: Data Models, App Structure & Design
-    </a>
-  </header>
-  <div class="right tab-menu menu">
+  <body>
     
-    <a class="item" data-tab="Lab-04">
-      Lab-04
-    </a>
     
-    <a class="item" data-tab="01">
-      01
-    </a>
-    
-    <a class="item" data-tab="02">
-      02
-    </a>
-    
-    <a class="item" data-tab="03">
-      03
-    </a>
-    
-    <a class="item" data-tab="04">
-      04
-    </a>
-    
-    <a class="item" data-tab="05">
-      05
-    </a>
-    
-    <a class="item" data-tab="Exercise">
-      Exercise
-    </a>
-    
-    <div class="item">
-      
+
+    <div class="ui fixed top pointing inverted stackable menu labmenu">
+      <header class="header item">
+        <i id="toc" class="sitemap icon"></i>
+        <a href="../index.html">
+          03: Data Models, App Structure & Design 
+        </a>
+      </header>
+      <div class="right tab-menu menu">
+        
+          <a class="item" data-tab="Lab-04">
+            Lab-04
+          </a>
+        
+          <a class="item" data-tab="01">
+            01
+          </a>
+        
+          <a class="item" data-tab="02">
+            02
+          </a>
+        
+          <a class="item" data-tab="03">
+            03
+          </a>
+        
+          <a class="item" data-tab="04">
+            04
+          </a>
+        
+          <a class="item" data-tab="05">
+            05
+          </a>
+        
+          <a class="item" data-tab="Exercise">
+            Exercise
+          </a>
+        
+        <div class="item">
+          
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<div class="ui segment pushable">
-  <div class="ui inverted labeled icon left inline vertical sidebar menu">
-    <br><br>
-    
-      
-        <a class="item" href="../../topic01-overview-and-tools/book-a-lab-01/index.html">
-          Lab-01
-        </a>
-      
-    
-      
-        <a class="item" href="../../topic01-overview-and-tools/book-b-lab-02/index.html">
-          Lab-02
-        </a>
-      
-    
-      
-        <a class="item" href="../../topic02-activities-and-navigation/book-a-donation-02/index.html">
-          Lab-03
-        </a>
-      
-    
-      
-        <a class="active item" href="../../topic03-app-structure/book-a-donation-03/index.html">
-          Lab-04
-        </a>
-      
-    
-      
-        <a class="item" href="../../topic04-persistence/book-a-donation-04/index.html">
-          Lab-05-1
-        </a>
-      
-    
-      
-        <a class="item" href="../../topic04-persistence/book-b-donation-realm/index.html">
-          Lab-05-2
-        </a>
-      
-    
-  </div>
-  <div class="pusher" tabindex="-1">
-    <div class="ui basic segment" id="labchat">
-      <br>
-      
-      <div  class="ui tab segment lab" data-tab="Lab-04">
-        <h1>Objectives</h1>
+    <div class="ui segment pushable">
+      <div class="ui inverted labeled icon left inline vertical sidebar menu">
+        <br><br>
+        
+          
+            <a class="item" href="../../topic01-overview-and-tools/book-a-lab-01/index.html">
+              Lab-01
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic01-overview-and-tools/book-b-lab-02/index.html">
+              Lab-02
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic02-activities-and-navigation/book-a-donation-02/index.html">
+              Lab-03
+            </a>
+          
+        
+          
+            <a class="active item" href="../../topic03-app-structure/book-a-donation-03/index.html">
+              Lab-04
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic04-persistence/book-a-donation-04/index.html">
+              Lab-05-1
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic04-persistence/book-b-donation-realm/index.html">
+              Lab-05-2
+            </a>
+          
+        
+      </div>
+      <div class="pusher" tabindex="-1">
+        <div class="ui basic segment" id="labchat">
+          <br>
+          
+            <div  class="ui tab segment lab" data-tab="Lab-04">
+              <h1>Objectives</h1>
 <p>In this version of our Donation Case Study App, called <b>Donation.3.0</b> we evolve the Donation Android app to include a Donation Object Model and Base class. We also use a CustomAdapter in the Report View and refactor our menus with xml driven event handling.</p>
 <p><b>NOTE : These Labs we build in a previous Version to Android Studio 3.0 so be aware that some images and instructions may not be up to date. Also, when replacing any XML with that from the Lab, the Widgets will not be &#39;anchored&#39; so it would be advisable to go ahead and &#39;anchor&#39; your widgets to improve the future design of your layouts.</b></p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="01">
-        <h1>Donation Model &amp; Base Class</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="01">
+              <h1>Donation Model &amp; Base Class</h1>
 <p>In order to keep our application design coherent, we now bring in a <strong>Base</strong> class and a <strong>Donation</strong> class to manage our Donations. You can continue with your own version of the app or start with the solution from the previous lab - <a href="archives/Donation.2.0.zip">Donation.2.0</a></p>
 <p>But before you do anything, it&#39;s probably a good idea to rename/copy your project to <b>Donation.3.0</b> like you did in the previous lab - so go ahead and do that now (just make sure it&#39;s not open in Android Studio before you go renaming files!, and don&#39;t forget to update your <strong>app_name</strong> resource in your <strong>strings.xml</strong>)</p>
 <p>Now, first, create a new package called <strong>ie.app.models</strong> in &#39;main&#39; and bring in this class here:</p>
@@ -298,10 +283,10 @@ public class Donation
 <p><img src="img/lab4s101.png" alt=""></p>
 <p>Also, pay particular attention to the &#39;settings&#39;, &#39;report&#39; and &#39;donate&#39; methods - these will be triggered directly by our menu options via xml, which we&#39;ll look at in Step 05.</p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="02">
-        <h1>Refactored Donate</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="02">
+              <h1>Refactored Donate</h1>
 <p>The <strong>Donate</strong> activity can now be completely refactored to make use of the <strong>Base</strong> class.</p>
 <pre><code class="lang-java">public class Donate extends Base {
 
@@ -382,10 +367,10 @@ public class Donation
 <p>Replace your version with this and execute it - fix any missing import statements necessary.</p>
 <p>Look carefully at the changes to this version over the previous attempt.</p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="03">
-        <h1>Refactored Report - New &#39;Layout&#39;</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="03">
+              <h1>Refactored Report - New &#39;Layout&#39;</h1>
 <p>We now rework the <strong>Report</strong> Layout to render the actual donations - held in the <strong>Base</strong> class list.</p>
 <p>First some layout additions. Include these new string resources in <strong>strings.xml</strong></p>
 <pre><code class="lang-xml">    &lt;string name=&quot;defaultAmount&quot;&gt;00&lt;/string&gt;
@@ -423,10 +408,10 @@ public class Donation
         app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;
 &lt;/android.support.constraint.ConstraintLayout&gt;</code></pre>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="04">
-        <h1>Refactored Report - New &#39;Class&#39;</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="04">
+              <h1>Refactored Report - New &#39;Class&#39;</h1>
 <p>Finally, rework the <strong>Report</strong> class to remove the hard coded values - and use a different &#39;<strong>adapter</strong>&#39;</p>
 <pre><code class="lang-java">public class Report extends Base
 {
@@ -499,10 +484,10 @@ public class Donation
 <p>If all goes well - then you should be able to make donations, and then see a list of them in the <strong>Report</strong> activity.</p>
 <p><img src="img/lab4s401.png" alt=""> <img src="img/lab4s402.png" alt=""></p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="05">
-        <h1>Refactored Menu - New &#39;Event Handling&#39;</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="05">
+              <h1>Refactored Menu - New &#39;Event Handling&#39;</h1>
 <p>If you recall from Step 01, our <strong>Base</strong> class has 3 particular methods that we haven&#39;t made use of - yet</p>
 <pre><code class="lang-java">  public void settings(MenuItem item)
   {
@@ -660,10 +645,10 @@ class DonationAdapter extends ArrayAdapter&lt;Donation&gt;
 }</code></pre>
 <p>Run your app once more, to confirm the changes, and that your <strong>Menu</strong> still works as it should.</p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="Exercise">
-        <h1>Exercise &amp; Solution</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="Exercise">
+              <h1>Exercise &amp; Solution</h1>
 <p>As a final exercise, try and add some event handling to the <strong>Report</strong> Activity - i.e. when the user selects a row in the Report List, display a simple toast detailing which row was selected and the donation data from that row.</p>
 <p>Something like this:</p>
 <p><img src="img/lab4s701.png" alt=""></p>
@@ -682,25 +667,14 @@ class DonationAdapter extends ArrayAdapter&lt;Donation&gt;
 <li><a href="archives/Donation.3.0.zip">Donation.3.0</a></li>
 </ul>
 
+            </div>
+          
+        </div>
       </div>
-     
     </div>
-  </div>
-</div>
-<!--<div class="ui bottom fixed borderless right menu">
-  <div class="ui right tiny menu">
-    <div class="ui mini message segment">
-      .
-      <a href="http://creativecommons.org/licenses/by-nc/4.0/"
-         title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
-         target="_blank">Creative Commons License
-      </a>
-    </div>
-  </div>
-</div>-->
 
-<script>
-  $(document).on('keydown', function(e) {
+    <script>
+      $(document).on('keydown', function(e) {
   e = e || window.event;
   var nextTab;
   switch (e.which || e.keyCode) {
@@ -720,14 +694,6 @@ class DonationAdapter extends ArrayAdapter&lt;Donation&gt;
   }
 });
 
-</script>
-
-
-
-    <footer>
-
-    </footer>
-    <script>
       $(document).ready(function() {
   $('img').addClass('ui image');
 
@@ -763,5 +729,4 @@ class DonationAdapter extends ArrayAdapter&lt;Donation&gt;
 
     </script>
   </body>
-
- </html>
+</html>

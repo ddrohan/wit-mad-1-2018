@@ -1,30 +1,22 @@
- <!DOCTYPE html>
- <html>
-   <head>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
 
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-     
-
-     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" rel="stylesheet" />
-
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
-     <script>hljs.initHighlightingOnLoad();</script>
-
-     
-
-     <style>
-       
-
-body 
+body
 {
   font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
 }
@@ -46,18 +38,6 @@ figcaption
   padding: 1rem 0;
   overflow: visible;
 }
-
-
-
-     </style>
-
-   </head>
-
-  <body>
-    
-
-<style>
-  
 
 code
 {
@@ -109,120 +89,125 @@ body
 
 
 
-</style>
+    </style>
+  </head>
 
-<div class="ui fixed top pointing inverted stackable menu labmenu">
-  <header class="header item">
-    <i id="toc" class="sitemap icon"></i>
-    <a href="../index.html">
-      04: Data Persistence in Android
-    </a>
-  </header>
-  <div class="right tab-menu menu">
+  <body>
     
-    <a class="item" data-tab="Lab-05-2">
-      Lab-05-2
-    </a>
     
-    <a class="item" data-tab="01">
-      01
-    </a>
-    
-    <a class="item" data-tab="02">
-      02
-    </a>
-    
-    <a class="item" data-tab="03">
-      03
-    </a>
-    
-    <a class="item" data-tab="04">
-      04
-    </a>
-    
-    <a class="item" data-tab="05">
-      05
-    </a>
-    
-    <a class="item" data-tab="06">
-      06
-    </a>
-    
-    <a class="item" data-tab="07">
-      07
-    </a>
-    
-    <a class="item" data-tab="08">
-      08
-    </a>
-    
-    <a class="item" data-tab="09">
-      09
-    </a>
-    
-    <a class="item" data-tab="Solution">
-      Solution
-    </a>
-    
-    <div class="item">
-      
+
+    <div class="ui fixed top pointing inverted stackable menu labmenu">
+      <header class="header item">
+        <i id="toc" class="sitemap icon"></i>
+        <a href="../index.html">
+          04: Data Persistence in Android 
+        </a>
+      </header>
+      <div class="right tab-menu menu">
+        
+          <a class="item" data-tab="Lab-05-2">
+            Lab-05-2
+          </a>
+        
+          <a class="item" data-tab="01">
+            01
+          </a>
+        
+          <a class="item" data-tab="02">
+            02
+          </a>
+        
+          <a class="item" data-tab="03">
+            03
+          </a>
+        
+          <a class="item" data-tab="04">
+            04
+          </a>
+        
+          <a class="item" data-tab="05">
+            05
+          </a>
+        
+          <a class="item" data-tab="06">
+            06
+          </a>
+        
+          <a class="item" data-tab="07">
+            07
+          </a>
+        
+          <a class="item" data-tab="08">
+            08
+          </a>
+        
+          <a class="item" data-tab="09">
+            09
+          </a>
+        
+          <a class="item" data-tab="Solution">
+            Solution
+          </a>
+        
+        <div class="item">
+          
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<div class="ui segment pushable">
-  <div class="ui inverted labeled icon left inline vertical sidebar menu">
-    <br><br>
-    
-      
-        <a class="item" href="../../topic01-overview-and-tools/book-a-lab-01/index.html">
-          Lab-01
-        </a>
-      
-    
-      
-        <a class="item" href="../../topic01-overview-and-tools/book-b-lab-02/index.html">
-          Lab-02
-        </a>
-      
-    
-      
-        <a class="item" href="../../topic02-activities-and-navigation/book-a-donation-02/index.html">
-          Lab-03
-        </a>
-      
-    
-      
-        <a class="item" href="../../topic03-app-structure/book-a-donation-03/index.html">
-          Lab-04
-        </a>
-      
-    
-      
-        <a class="item" href="../../topic04-persistence/book-a-donation-04/index.html">
-          Lab-05-1
-        </a>
-      
-    
-      
-        <a class="active item" href="../../topic04-persistence/book-b-donation-realm/index.html">
-          Lab-05-2
-        </a>
-      
-    
-  </div>
-  <div class="pusher" tabindex="-1">
-    <div class="ui basic segment" id="labchat">
-      <br>
-      
-      <div  class="ui tab segment lab" data-tab="Lab-05-2">
-        <h1>Objectives</h1>
+    <div class="ui segment pushable">
+      <div class="ui inverted labeled icon left inline vertical sidebar menu">
+        <br><br>
+        
+          
+            <a class="item" href="../../topic01-overview-and-tools/book-a-lab-01/index.html">
+              Lab-01
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic01-overview-and-tools/book-b-lab-02/index.html">
+              Lab-02
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic02-activities-and-navigation/book-a-donation-02/index.html">
+              Lab-03
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic03-app-structure/book-a-donation-03/index.html">
+              Lab-04
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic04-persistence/book-a-donation-04/index.html">
+              Lab-05-1
+            </a>
+          
+        
+          
+            <a class="active item" href="../../topic04-persistence/book-b-donation-realm/index.html">
+              Lab-05-2
+            </a>
+          
+        
+      </div>
+      <div class="pusher" tabindex="-1">
+        <div class="ui basic segment" id="labchat">
+          <br>
+          
+            <div  class="ui tab segment lab" data-tab="Lab-05-2">
+              <h1>Objectives</h1>
 <p>In <b>Donation.4.0.Realm</b> you will again build on the previous lab and add in some new features and Database Support, and an Application Object. It&#39;s actually very similar to <b>Donation.4.0</b>, but with Realm support, the code base is reduced substantially.</p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="01">
-        <h1>Setup - Starter Code</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="01">
+              <h1>Setup - Starter Code</h1>
 <p>As with the previous labs, you can download the solution/starter code for <a href="archives/Donation.4.0.Starter.zip">Donation.4.0.starter</a>, or continue on with your own version.</p>
 <p>Your current project (after renaming/copying) should looks something like this:</p>
 <p><img src="img/lab5s101.png" alt=""></p>
@@ -234,10 +219,10 @@ body
 </ul>
 <p>The following steps will guide you through these requirements, so we&#39;ll start with the Menu Option.</p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="02">
-        <h1>Adding a new Menu Option</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="02">
+              <h1>Adding a new Menu Option</h1>
 <p>First of all, confirm that the current Menu looks like this:</p>
 <p><img src="img/lab5s201.png" alt=""></p>
 <p>but we want something like this:</p>
@@ -258,10 +243,10 @@ body
 <p><img src="img/lab5s202.png" alt=""></p>
 <p>We can&#39;t implement this menu option fully yet, so for the moment, we&#39;ll just &#39;reset&#39; the target amount back to zero (0) - Step 03.</p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="03">
-        <h1>Resetting the Target Amount</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="03">
+              <h1>Resetting the Target Amount</h1>
 <p>This is more of an interim step but is necessary to ensure the menu event handler for the &#39;Reset&#39; option is working correctly.</p>
 <p>First, edit <b>Donate.java</b> and introduce an implementation of the &#39;reset&#39; method</p>
 <pre><code class="lang-java"> @Override
@@ -275,10 +260,10 @@ body
 <p>So add in the code necessary to deal with the Reset Menu option being selected, and reset the <i>totalDonated</i> back to zero (0). You also need to update the Donate UI to reflect this reset, so try and have a go at that too.</p>
 <p>Run the app again to confirm that the &#39;Reset&#39; Menu option is now functioning.</p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="04">
-        <h1>Application Object</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="04">
+              <h1>Application Object</h1>
 <p>Before we complete this step, here&#39;s the code you need for the previous step.</p>
 <pre><code class="lang-java"> @Override
   public void reset(MenuItem item)
@@ -314,10 +299,10 @@ public class DonationApp extends Application
 <p>Make sure the &#39;Donation App Started&#39; appears in the logs to verify that it has actually been engaged correctly, when you launch the app.</p>
 <p><img src="img/lab5s401.png" alt=""></p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="05">
-        <h1>Donation Model</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="05">
+              <h1>Donation Model</h1>
 <p>We now need to refactor the Base class (next Step) and move the donation related attributes and method (i.e. the variables target, totalDonated and the donations list, and the newDonation() method) into our DonationApp class.</p>
 <p>This is a revised version of DonationApp - which now manages a list of donations. It also centralises the &#39;makeDonation&#39; event implementing it as a method. We will also &#39;open&#39; and  &#39;close&#39; our database here eventually. Replace your DonationApp class with this one:</p>
 <pre><code class="lang-java">package ie.app.main;
@@ -358,10 +343,10 @@ public class DonationApp extends Application
     }
 }</code></pre>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="06">
-        <h1>Base Class Refactoring</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="06">
+              <h1>Base Class Refactoring</h1>
 <p>The Base activity can now be completely refactored to make use of the DonationApp object. You <b>WILL</b> have errors at the end of this step, due to referencing our (as yet missing) database classes - but we&#39;ll fix those in the next few steps.</p>
 <p>This is our new Base class</p>
 <pre><code class="lang-java">public class Base extends AppCompatActivity {
@@ -436,10 +421,10 @@ public class DonationApp extends Application
     public void reset(MenuItem item) { }
 }</code></pre>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="07">
-        <h1>Adding Realm Database Support</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="07">
+              <h1>Adding Realm Database Support</h1>
 <p>Once you configure the project and add the necessary Database class, (to fix the errors from the previous step) this step is relatively straight forward - all you have to do is replace the method calls that manages the <b><i>donationList</i></b> with the respective <b><i>dbManager</i></b> calls.</p>
 <p>First add this to your <b>PROJECT</b> level build.gradle</p>
 <pre><code class="lang-XML">classpath &quot;io.realm:realm-gradle-plugin:2.2.1&quot;</code></pre>
@@ -580,10 +565,10 @@ apply plugin: &#39;realm-android&#39;</code></pre>
 <p>Once you fix all the errors, and run the app again, you should still be able to make donations - but this time those donations are stored in our Realm database.</p>
 <p>And as a final check, if you shut down the app and restart it again, you should still be able to see the donations made in the Report.</p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="08">
-        <h1>Resetting the Donations</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="08">
+              <h1>Resetting the Donations</h1>
 <p>The last step in this lab involves deleting all the donations in the database when the user wishes to &#39;Reset&#39;.</p>
 <p>There&#39;s actually not a lot required in this step - all you need to do is call <b>reset()</b> on your database object when the user selects the Menu option, so modify your reset method (in your Donate.java) as follows:</p>
 <pre><code class="lang-java">  @Override
@@ -597,10 +582,10 @@ apply plugin: &#39;realm-android&#39;</code></pre>
 <p>That&#39;s about it really - with one exception. There&#39;s a small bug in the app related to when the app restarts and the target <b>HAS NOT</b> been reached.</p>
 <p>Can you find it, and more importantly, fix it?</p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="09">
-        <h1>Deleting a Donation</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="09">
+              <h1>Deleting a Donation</h1>
 <p>As an extra feature, we&#39;ll take a look at how to possibly delete a single Donation from the database, as opposed to resetting (or deleting ) all the donations, like we did in the last step.</p>
 <p>First thing to do is add a new &#39;delete button&#39; to our custom Layout <b>row_donate.xml</b> so it looks like this:</p>
 <p><img src="img/lab5s901.png" alt=""></p>
@@ -634,34 +619,23 @@ apply plugin: &#39;realm-android&#39;</code></pre>
 <p><img src="img/lab5s902.png" alt=""></p>
 <p>Where&#39;s the actual deleting you may ask? Well, that&#39;ll be up to you....</p>
 
-      </div>
-     
-      <div  class="ui tab segment lab" data-tab="Solution">
-        <h1>Solution</h1>
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="Solution">
+              <h1>Solution</h1>
 <p>This is a solution to the lab:</p>
 <ul>
 <li><a href="archives/Donation.4.0.Realm.zip">Donation.4.0.Realm</a></li>
 </ul>
 
+            </div>
+          
+        </div>
       </div>
-     
     </div>
-  </div>
-</div>
-<!--<div class="ui bottom fixed borderless right menu">
-  <div class="ui right tiny menu">
-    <div class="ui mini message segment">
-      .
-      <a href="http://creativecommons.org/licenses/by-nc/4.0/"
-         title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
-         target="_blank">Creative Commons License
-      </a>
-    </div>
-  </div>
-</div>-->
 
-<script>
-  $(document).on('keydown', function(e) {
+    <script>
+      $(document).on('keydown', function(e) {
   e = e || window.event;
   var nextTab;
   switch (e.which || e.keyCode) {
@@ -681,14 +655,6 @@ apply plugin: &#39;realm-android&#39;</code></pre>
   }
 });
 
-</script>
-
-
-
-    <footer>
-
-    </footer>
-    <script>
       $(document).ready(function() {
   $('img').addClass('ui image');
 
@@ -724,5 +690,4 @@ apply plugin: &#39;realm-android&#39;</code></pre>
 
     </script>
   </body>
-
- </html>
+</html>
