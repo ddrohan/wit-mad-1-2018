@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.4/css/uikit.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.4/js/uikit.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.4/js/uikit-icons.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/css/uikit.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"/>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
@@ -36,6 +38,7 @@ pre code {
 
 img {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
 }
 
 h1, h2, h3 {
@@ -60,9 +63,10 @@ h3 {
 
 
   </style>
-<body>
 
-  
+  <body class="lab">
+
+    
   <div class="uk-offcanvas-content">
     <div id="offcanvas-usage" uk-offcanvas>
       <div class="uk-offcanvas-bar">
@@ -93,52 +97,56 @@ Lab-02
   </div>
 
 
-  <div uk-sticky>
-    <nav uk-navbar>
-      <div class="uk-navbar-left">
-        <ul class="uk-subnav uk-background-secondary uk-subnav-pill">
-          <li><a href="#offcanvas-usage" uk-icon="icon: menu", uk-toggle title="Switch Lab" pos="bottom" uk-tooltip></a></li>
-          <li class="uk-active"><a href="../index.html">01: Overview & Tools </a></li>
-        </ul>
-      </div>
+    <div uk-sticky>
+      <nav class="uk-navbar">
+        <div class="uk-navbar-left">
+          <ul class="uk-subnav uk-background-secondary uk-subnav-pill">
+            <li><a href="#offcanvas-usage" uk-icon="icon: menu" , uk-toggle title="Switch Lab" pos="bottom"
+                   uk-tooltip></a></li>
+            
+              <li class="uk-active"><a href="../index.html" uk-icon="icon: chevron-up" uk-toggle title="Parent Topic"
+                                     pos="bottom" uk-tooltip>01: Overview & Tools </a></li>
+            
+          </ul>
+        </div>
+        <div class="uk-navbar-right">
+          <ul class="uk-subnav uk-background-secondary uk-subnav-pill"
+              uk-switcher="connect: .switcher-container">
+            
+              <li><a href="#">Lab-02</a></li>
+            
+              <li><a href="#">01</a></li>
+            
+              <li><a href="#">02</a></li>
+            
+              <li><a href="#">03</a></li>
+            
+              <li><a href="#">04</a></li>
+            
+              <li><a href="#">05</a></li>
+            
+              <li><a href="#">06</a></li>
+            
+              <li><a href="#">07</a></li>
+            
+              <li><a href="#">08</a></li>
+            
+              <li><a href="#">Exercises</a></li>
+            
+          </ul>
+        </div>
+      </nav>
+    </div>
 
-
-      <div class="uk-navbar-right">
-        <ul class="uk-subnav uk-background-secondary uk-subnav-pill uk-subnav-divider" uk-switcher="connect: .switcher-container">
-          
-            <li><a href="#">Lab-02</a></li>
-          
-            <li><a href="#">01</a></li>
-          
-            <li><a href="#">02</a></li>
-          
-            <li><a href="#">03</a></li>
-          
-            <li><a href="#">04</a></li>
-          
-            <li><a href="#">05</a></li>
-          
-            <li><a href="#">06</a></li>
-          
-            <li><a href="#">07</a></li>
-          
-            <li><a href="#">08</a></li>
-          
-            <li><a href="#">Exercises</a></li>
-          
-        </ul>
-      </div>
-    </nav>
-  </div>
-  <div class="uk-container uk-container-expand">
-    <ul class="uk-switcher switcher-container">
-      
-        <li> <h1>Objectives</h1>
+    <div class="uk-container uk-container-expand">
+      <ul class="uk-switcher switcher-container">
+        
+          <li> <h1>Objectives</h1>
 <p>In this Lab, you will be required to build the first version of our Donation Case Study App, called <b>Donation.1.0</b>. Here, we will add in a few UI widgets on a single layout and implement some basic event handling.</p>
 <p><b>NOTE : These Labs we build in a previous Version to Android Studio 3.0 so be aware that some images and instructions may not be up to date. Also, when replacing any XML with that from the Lab, the Widgets will not be &#39;anchored&#39; so it would be advisable to go ahead and &#39;anchor&#39; your widgets to improve the future design of your layouts.</b></p>
 </li>
-      
-        <li> <h1>Step 01 - Create Project</h1>
+        
+          <li> <h1>Step 01 - Create Project</h1>
 <p>Create a new Android application, as demonstrated in the following 5 screenshots:</p>
 <p><img src="img/firstrun.png" alt=""></p>
 <p><img src="img/lab2s101.png" alt=""></p>
@@ -162,8 +170,8 @@ Lab-02
 <p>NOTE : The version Numbers may differ depending on the API level you chose initially.</p>
 <p><img src="img/lab2s110.png" alt=""></p>
 </li>
-      
-        <li> <h1>Step 02 - Donate Layout &amp; Resources</h1>
+        
+          <li> <h1>Step 02 - Donate Layout &amp; Resources</h1>
 <p>On completion of this lab you&#39;ll be able to</p>
 <ul>
 <li><p>design an initial layout for the app.</p>
@@ -305,8 +313,8 @@ Lab-02
     &lt;string name=&quot;donateSubtitle&quot;&gt;Please Give Generously&lt;/string&gt;
 &lt;/resources&gt;</code></pre>
 </li>
-      
-        <li> <h1>Step 03 - The &#39;Donate&#39; Button</h1>
+        
+          <li> <h1>Step 03 - The &#39;Donate&#39; Button</h1>
 <p>Place a button directly on to the activity - attached to the bottom of the screen as shown:</p>
 <p><img src="img/lab2s301.png" alt=""></p>
 <p>Following a similar procedure as in the previous step, rename the button and add an id, both called <b>donateButton</b> If all goes as expected, your xml files should be like this:</p>
@@ -530,8 +538,8 @@ public class Donate extends AppCompatActivity {
 <p><img src="img/lab2s306.png" alt=""></p>
 <p>Run the app again, and verify the above message appears.</p>
 </li>
-      
-        <li> <h1>Step 04 - Documentation</h1>
+        
+          <li> <h1>Step 04 - Documentation</h1>
 <p>The android documentation is particularly helpful and well designed. These are the two key starting points:</p>
 <ul>
 <li><a href="http://developer.android.com/guide/components/index.html">http://developer.android.com/guide/components/index.html</a></li>
@@ -575,8 +583,8 @@ public class Donate extends AppCompatActivity {
 <p><img src="img/lab2s401.png" alt=""></p>
 <p>We now have our first interaction working!</p>
 </li>
-      
-        <li> <h1>Step 05 - New Control Layout</h1>
+        
+          <li> <h1>Step 05 - New Control Layout</h1>
 <p>Recall the UI we are trying to implement:</p>
 <p><img src="img/completeappv1.png" alt=""></p>
 <p>We need radio buttons, some sort of selection/combo box + a progress bar. These can be found in various locations in the pallette:</p>
@@ -842,8 +850,8 @@ public class Donate extends AppCompatActivity {
     }
 }</code></pre>
 </li>
-      
-        <li> <h1>Step 06 - NumberPicker</h1>
+        
+          <li> <h1>Step 06 - NumberPicker</h1>
 <p>This is our reference documentation:</p>
 <ul>
 <li><a href="http://developer.android.com/reference/android/widget/NumberPicker.html">http://developer.android.com/reference/android/widget/NumberPicker.html</a></li>
@@ -879,8 +887,8 @@ public class Donate extends AppCompatActivity {
 <p>Run this now - and verify that it operates as expected (see the actual amounts in the log file, as below).</p>
 <p><img src="img/lab2s601.png" alt=""></p>
 </li>
-      
-        <li> <h1>Step 07 - The Radio Buttons</h1>
+        
+          <li> <h1>Step 07 - The Radio Buttons</h1>
 <p>In <strong><em>donateButtonPressed()</em></strong> we need to discover which payment method has been selected. Our RadioGroup documentation is here:</p>
 <ul>
 <li><a href="http://developer.android.com/reference/android/widget/RadioGroup.html">http://developer.android.com/reference/android/widget/RadioGroup.html</a></li>
@@ -1000,8 +1008,8 @@ public class Donate extends AppCompatActivity {
 <p>So run your app again just to confirm the LogCat entries</p>
 <p><img src="img/lab2s701.png" alt=""></p>
 </li>
-      
-        <li> <h1>Step 08 - The Progress Bar</h1>
+        
+          <li> <h1>Step 08 - The Progress Bar</h1>
 <p>The progress bar documentation:</p>
 <ul>
 <li><a href="http://developer.android.com/reference/android/widget/ProgressBar.html">http://developer.android.com/reference/android/widget/ProgressBar.html</a></li>
@@ -1223,8 +1231,8 @@ public class Donate extends AppCompatActivity {
     String method = paymentMethod.getCheckedRadioButtonId() == R.id.PayPal ? &quot;PayPal&quot; : &quot;Direct&quot;;</code></pre>
 <p>Android code can become very verbose and complex. Carefully formatting is essential if you are not to be overwhelmed.</p>
 </li>
-      
-        <li> <h1>Exercises</h1>
+        
+          <li> <h1>Exercises</h1>
 <p>Archive of lab so far:</p>
 <ul>
 <li><a href="archives/Donation.1.0.zip">Donation.1.0.zip</a></li>
@@ -1270,7 +1278,25 @@ public class Donate extends AppCompatActivity {
 <li><a href="archives/Donation.1.5.zip">Donation.1.5.zip</a></li>
 </ul>
 </li>
-      
-    </ul>
-  </div>
-</body>
+        
+      </ul>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass('');
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass('uk-label uk-text-lowercase');
+      divLabel.append($images[i].alt);
+      $(divLabel).insertAfter($images[i]);
+      $('<br>').insertAfter($images[i]);
+    }
+  });
+});
+
+    </script>
+  </body>
+</html>

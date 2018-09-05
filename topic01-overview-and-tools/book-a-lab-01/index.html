@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.4/css/uikit.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.4/js/uikit.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.4/js/uikit-icons.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/css/uikit.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"/>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
@@ -36,6 +38,7 @@ pre code {
 
 img {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
 }
 
 h1, h2, h3 {
@@ -60,9 +63,10 @@ h3 {
 
 
   </style>
-<body>
 
-  
+  <body class="lab">
+
+    
   <div class="uk-offcanvas-content">
     <div id="offcanvas-usage" uk-offcanvas>
       <div class="uk-offcanvas-bar">
@@ -93,41 +97,45 @@ Lab-02
   </div>
 
 
-  <div uk-sticky>
-    <nav uk-navbar>
-      <div class="uk-navbar-left">
-        <ul class="uk-subnav uk-background-secondary uk-subnav-pill">
-          <li><a href="#offcanvas-usage" uk-icon="icon: menu", uk-toggle title="Switch Lab" pos="bottom" uk-tooltip></a></li>
-          <li class="uk-active"><a href="../index.html">01: Overview & Tools </a></li>
-        </ul>
-      </div>
+    <div uk-sticky>
+      <nav class="uk-navbar">
+        <div class="uk-navbar-left">
+          <ul class="uk-subnav uk-background-secondary uk-subnav-pill">
+            <li><a href="#offcanvas-usage" uk-icon="icon: menu" , uk-toggle title="Switch Lab" pos="bottom"
+                   uk-tooltip></a></li>
+            
+              <li class="uk-active"><a href="../index.html" uk-icon="icon: chevron-up" uk-toggle title="Parent Topic"
+                                     pos="bottom" uk-tooltip>01: Overview & Tools </a></li>
+            
+          </ul>
+        </div>
+        <div class="uk-navbar-right">
+          <ul class="uk-subnav uk-background-secondary uk-subnav-pill"
+              uk-switcher="connect: .switcher-container">
+            
+              <li><a href="#">Lab-01</a></li>
+            
+              <li><a href="#">01</a></li>
+            
+              <li><a href="#">02</a></li>
+            
+              <li><a href="#">03</a></li>
+            
+              <li><a href="#">04</a></li>
+            
+          </ul>
+        </div>
+      </nav>
+    </div>
 
-
-      <div class="uk-navbar-right">
-        <ul class="uk-subnav uk-background-secondary uk-subnav-pill uk-subnav-divider" uk-switcher="connect: .switcher-container">
-          
-            <li><a href="#">Lab-01</a></li>
-          
-            <li><a href="#">01</a></li>
-          
-            <li><a href="#">02</a></li>
-          
-            <li><a href="#">03</a></li>
-          
-            <li><a href="#">04</a></li>
-          
-        </ul>
-      </div>
-    </nav>
-  </div>
-  <div class="uk-container uk-container-expand">
-    <ul class="uk-switcher switcher-container">
-      
-        <li> <h1>Objectives</h1>
+    <div class="uk-container uk-container-expand">
+      <ul class="uk-switcher switcher-container">
+        
+          <li> <h1>Objectives</h1>
 <p>Here we discuss how to install and set up effective tools for Android application development. These include the Android Studio IDE  + an emulator. We&#39;ll also create a simple Android App (HelloWorld), and be able to manage it within the Android Studio environment.</p>
 </li>
-      
-        <li> <h1>Android Studio &amp; SDK Tools</h1>
+        
+          <li> <h1>Android Studio &amp; SDK Tools</h1>
 <h2>Instructions for working in Walton Building PC Labs:</h2>
 <p>If you are working on the workstations in WIT in the IT Building, Android Studio should already be installed so proceed with the next step of the lab.</p>
 <h2>Instructions for working on your own laptop</h2>
@@ -147,8 +155,8 @@ Lab-02
 <p>NOTE : these downloads are quite large so it&#39;s advisable to have these versions installed <b>BEFORE</b> class.</p>
 <p><img src="img/sdk.png" alt="Figure 1: Android SDK"></p>
 </li>
-      
-        <li> <h1>Your First Android Project - &quot;HelloWorld&quot;</h1>
+        
+          <li> <h1>Your First Android Project - &quot;HelloWorld&quot;</h1>
 <p>In Android Studio, select File-&gt;New-&gt;New Project, or if it&#39;s a first run, select &quot;Start a new Android Studio Project&quot;</p>
 <p><img src="img/firstrun.png" alt="Figure 1: Start a new Android Studio project"></p>
 <p>Press &quot;Next&quot; (or click the option) and then give the project a name: &#39;HelloWorld&#39;</p>
@@ -189,8 +197,8 @@ Lab-02
 <p><b>The Virtual Device is very heavy on resources so you may need to choose settings below what is selected in the Screenshots.</b></p>
 <p>Otherwise, use the settings as above and your first Android App should launch, (Once you&#39;ve unlocked the device!):</p>
 </li>
-      
-        <li> <h1>Our version of &quot;HelloWorld&quot;</h1>
+        
+          <li> <h1>Our version of &quot;HelloWorld&quot;</h1>
 <p>In this Step, you will be required to develop and run your own version of the &quot;Hello World&quot; Android Project (as seen below).</p>
 <p><img src="img/lab01.png" alt="Figure 1: Completed App running in Emulator"></p>
 <p>If you&#39;ve deleted your HelloWorld Project, launch Android Studio (if it&#39;s not already open) and create a new Android Project called <b>HelloWorld</b> similar to what you did in Step 02.</p>
@@ -310,8 +318,8 @@ public class HelloWorldActivity extends AppCompatActivity {
 <p><img src="img/lab04.png" alt="Figure 5: Completed App running in Emulator with Button clicked"></p>
 <p>We will investigate this code more closely in the lectures.</p>
 </li>
-      
-        <li> <h1>Exercises</h1>
+        
+          <li> <h1>Exercises</h1>
 <p><strong>Working with Resources</strong></p>
 <ul>
 <li>Just to get used to adding and editing resources, create a new button for our main layout, and try and &#39;hook it up&#39; to a new string resource message to display to the user.</li>
@@ -321,7 +329,25 @@ public class HelloWorldActivity extends AppCompatActivity {
 <li>Have a look at adding in a new colour resource and changing the default colour scheme for the layout.  </li>
 </ul>
 </li>
-      
-    </ul>
-  </div>
-</body>
+        
+      </ul>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass('');
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass('uk-label uk-text-lowercase');
+      divLabel.append($images[i].alt);
+      $(divLabel).insertAfter($images[i]);
+      $('<br>').insertAfter($images[i]);
+    }
+  });
+});
+
+    </script>
+  </body>
+</html>
